@@ -113,10 +113,10 @@ TextureImporter:
       name: Shapes_0
       rect:
         serializedVersion: 2
-        x: 64
-        y: 618
-        width: 513
-        height: 513
+        x: 62
+        y: 2512
+        width: 559
+        height: 557
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,10 +134,10 @@ TextureImporter:
       name: Shapes_1
       rect:
         serializedVersion: 2
-        x: 637
-        y: 618
-        width: 513
-        height: 513
+        x: 681
+        y: 2538
+        width: 503
+        height: 504
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,10 +155,10 @@ TextureImporter:
       name: Shapes_2
       rect:
         serializedVersion: 2
-        x: 1200
-        y: 618
-        width: 513
-        height: 513
+        x: 62
+        y: 1899
+        width: 559
+        height: 559
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,10 +176,10 @@ TextureImporter:
       name: Shapes_3
       rect:
         serializedVersion: 2
-        x: 64
-        y: 52
-        width: 513
-        height: 513
+        x: 681
+        y: 1927
+        width: 503
+        height: 503
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -197,10 +197,10 @@ TextureImporter:
       name: Shapes_4
       rect:
         serializedVersion: 2
-        x: 637
-        y: 59
-        width: 513
-        height: 513
+        x: 62
+        y: 1301
+        width: 559
+        height: 558
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -218,10 +218,10 @@ TextureImporter:
       name: Shapes_5
       rect:
         serializedVersion: 2
-        x: 1200
-        y: 60
-        width: 513
-        height: 512
+        x: 681
+        y: 1329
+        width: 503
+        height: 503
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -231,6 +231,111 @@ TextureImporter:
       bones: []
       spriteID: ec48dd4bee6296e4eb9808d703a40f03
       internalID: 6221950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shapes_6
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 692
+        width: 559
+        height: 558
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf325c515875cc7469e95ae968e92c91
+      internalID: -1097389247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shapes_7
+      rect:
+        serializedVersion: 2
+        x: 681
+        y: 719
+        width: 503
+        height: 503
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82018e80a07937c4fabae81678a479dc
+      internalID: -1921952458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shapes_8
+      rect:
+        serializedVersion: 2
+        x: 1266
+        y: 722
+        width: 504
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02f01a069db48fd40ba8dba1fb75bd31
+      internalID: -1807490258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shapes_9
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 82
+        width: 559
+        height: 557
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 638b41a3506f46640b508d900fbc3312
+      internalID: -1067055501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shapes_10
+      rect:
+        serializedVersion: 2
+        x: 681
+        y: 109
+        width: 503
+        height: 504
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cc21d666df32f44db02e37ddbe8c513
+      internalID: 163601379
       vertices: []
       indices: 
       edges: []
@@ -248,10 +353,15 @@ TextureImporter:
     nameFileIdTable:
       Shapes_0: -163226839
       Shapes_1: -2135511701
+      Shapes_10: 163601379
       Shapes_2: -267610264
       Shapes_3: -1006668649
       Shapes_4: -1194031400
       Shapes_5: 6221950
+      Shapes_6: -1097389247
+      Shapes_7: -1921952458
+      Shapes_8: -1807490258
+      Shapes_9: -1067055501
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
