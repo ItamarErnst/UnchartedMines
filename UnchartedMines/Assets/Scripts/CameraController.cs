@@ -7,7 +7,7 @@ public class CameraController : MonoBehaviour
 {
     public float moveSpeed = 5f;
     private Camera mainCamera;
-
+    
     private void Awake()
     {
         mainCamera = Camera.main;
@@ -20,12 +20,15 @@ public class CameraController : MonoBehaviour
         float vertical = Input.GetAxis("Vertical");
 
         Vector3 moveDirection = new Vector3(horizontal, vertical, 0f);
-        transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
-
+        
         // Trigger the OnCameraMove event
         if (moveDirection != Vector3.zero)
         {
-            GameEvent.OnCameraMove.Invoke();
+            if (IsCameraWithinBounds(transform.position + moveDirection))
+            {
+                transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
+                GameEvent.OnCameraMove.Invoke();
+            }
         }
     }
     
@@ -72,5 +75,13 @@ public class CameraController : MonoBehaviour
 
         return new Bounds(new Vector3((left + right) / 2f, (top + bottom) / 2f, 0f),
             new Vector3(right - left, top - bottom, float.MaxValue));
+    }
+    
+    private bool IsCameraWithinBounds(Vector3 cameraPosition)
+    {
+        Vector2Int cameraPosition2D = new Vector2Int((int)cameraPosition.x, (int)cameraPosition.y);
+
+        return (cameraPosition2D.x >= MapData.GetWorldEdge()[0].x && cameraPosition2D.x <= MapData.GetWorldEdge()[1].x &&
+                cameraPosition2D.y >= MapData.GetWorldEdge()[0].y && cameraPosition2D.y <= MapData.GetWorldEdge()[1].y);
     }
 }
