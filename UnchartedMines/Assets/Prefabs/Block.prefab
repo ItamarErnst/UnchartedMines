@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a576a637fd74461a74acaf732193b97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wall: {r: 0.47058827, g: 0.3647059, b: 0.27450982, a: 1}
-  Empty: {r: 0.81568635, g: 0.7058824, b: 0.6, a: 1}
+  Wall: {r: 0.40784314, g: 0.32156864, b: 0.2509804, a: 1}
+  Empty: {r: 0.5764706, g: 0.49411765, b: 0.42352942, a: 1}
   renderer: {fileID: 4917698058166624649}
 --- !u!1 &8451611915580071295
 GameObject:
