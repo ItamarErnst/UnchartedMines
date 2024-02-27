@@ -15,13 +15,11 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        // Move the camera using arrow keys
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
         Vector3 moveDirection = new Vector3(horizontal, vertical, 0f);
         
-        // Trigger the OnCameraMove event
         if (moveDirection != Vector3.zero)
         {
             if (IsCameraWithinBounds(transform.position + moveDirection))

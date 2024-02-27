@@ -5983,6 +5983,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1076991108}
   - component: {fileID: 1076991107}
+  - component: {fileID: 1076991109}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -6002,8 +6003,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78f98e2b70da4645a419baf988658b17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera_controller: {fileID: 550430961}
-  wallObjectPool: {fileID: 580812475}
+  GridManager: {fileID: 1076991109}
 --- !u!4 &1076991108
 Transform:
   m_ObjectHideFlags: 0
@@ -6019,6 +6019,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1076991109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1076991106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9da7ee509e44ede9feebf463a704aaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera_controller: {fileID: 550430961}
+  wallObjectPool: {fileID: 580812475}
 --- !u!1 &1114082260
 GameObject:
   m_ObjectHideFlags: 0

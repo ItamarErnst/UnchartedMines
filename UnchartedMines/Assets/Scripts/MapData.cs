@@ -27,22 +27,21 @@ public static class MapData
         {
             return wallData;
         }
-
-        WallData new_building = new WallData
-        {
-            wallType = WallType.Regular,
-            x = cellPosition.x,
-            y = cellPosition.y
-        };
         
         if (center_cells.Contains(cellPosition))
         {
-            new_building.wallType = WallType.Empty;
+            WallData new_building = new WallData
+            {
+                wallType = WallType.Empty,
+                x = cellPosition.x,
+                y = cellPosition.y
+            };
+            
+            UpdateMapData(cellPosition,new_building);
+            return new_building;
         }
 
-        UpdateMapData(cellPosition,new_building);
-
-        return new_building;
+        return null;
     }
 
     // Method to update WallData when a wall is cleared
