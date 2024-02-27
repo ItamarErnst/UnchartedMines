@@ -2,6 +2,19 @@
 
 public class WallDisplay : MonoBehaviour
 {
+    public Color Wall, Empty;
+    public SpriteRenderer renderer;
+    public void SetAsWall()
+    {
+        renderer.color = Wall;
+    }
+
+    public void SetAsEmpty()
+    {
+        Reset();
+        renderer.color = Empty;
+    }
+    
     public void Shrink(int shrinkAmount = 1)
     {
         if (shrinkAmount <= 0)

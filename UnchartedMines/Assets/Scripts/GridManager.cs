@@ -41,14 +41,16 @@ public class GridManager : MonoBehaviour
             return;
         }
         
+        wallDisplay.SetAsWall();
         wallDisplay.Shrink(wallData.currentHits++);
 
         if (wallData.currentHits >= wallData.hitsRequired)
         {
             Debug.Log($"Wall of type {wallData.wallType} at position ({wallData.x}, {wallData.y}) destroyed!");
             wallData.wallType = WallType.Empty;
-            wallDisplayDict.Remove(cell);
-            wallObjectPool.ReturnWallToPool(wallDisplay);
+            wallDisplay.SetAsEmpty();
+            //wallDisplayDict.Remove(cell);
+            //wallObjectPool.ReturnWallToPool(wallDisplay);
 
             CreateWalls(cell);
         }
@@ -75,8 +77,9 @@ public class GridManager : MonoBehaviour
             {
                 if(wallDisplayDict.TryGetValue(cell,out WallDisplay wall))
                 {
-                    wallDisplayDict.Remove(cell);
-                    wallObjectPool.ReturnWallToPool(wall);
+                    wall.SetAsEmpty();
+                    //wallDisplayDict.Remove(cell);
+                    //wallObjectPool.ReturnWallToPool(wall);
                 }
             }
         }
@@ -95,18 +98,23 @@ public class GridManager : MonoBehaviour
 
             if (wallData.wallType == WallType.Wall)
             {
+                newDisplay.SetAsWall();
                 newDisplay.Shrink(wallData.currentHits);
+            }
+            else
+            {
+                newDisplay.SetAsEmpty();
             }
             
             newDisplay.gameObject.SetActive(true);
         }
         else
         {
-            if (wallData.wallType == WallType.Empty)
-            {
-                wallDisplayDict.Remove(cell);
-                wallObjectPool.ReturnWallToPool(display);
-            }
+            //if (wallData.wallType == WallType.Empty)
+            //{
+            //    wallDisplayDict.Remove(cell);
+            //    wallObjectPool.ReturnWallToPool(display);
+            //}
         }
     }
 

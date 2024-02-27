@@ -5392,7 +5392,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.5764706, g: 0.49411765, b: 0.42352942, a: 0}
+  m_BackGroundColor: {r: 0.18039216, g: 0.14901961, b: 0.121568635, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -5655,7 +5655,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wallContainer: {fileID: 461529527}
-  wallPrefab: {fileID: 6993113437689658857, guid: e4ee632454e24b440a274acedcf0120b, type: 3}
+  wallPrefab: {fileID: 6993113437689658857, guid: b33b8a2d56f6f394a943346e4585638a, type: 3}
   poolSize: 110
   isReady: 0
 --- !u!4 &580812476
@@ -6031,6 +6031,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9da7ee509e44ede9feebf463a704aaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BlockDataProvider: {fileID: 1750142014}
   camera_controller: {fileID: 550430961}
   wallObjectPool: {fileID: 580812475}
 --- !u!1 &1114082260
@@ -6954,6 +6955,57 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1750142013
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1750142015}
+  - component: {fileID: 1750142014}
+  m_Layer: 0
+  m_Name: WallDataProvider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1750142014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750142013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91e746af652b4446aa999db39062f1fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wall_config_list:
+  - type: 0
+    prefab: {fileID: 6993113437689658857, guid: 3c692b18cef8faf40b8336f17b59c897, type: 3}
+  - type: 1
+    prefab: {fileID: 6993113437689658857, guid: b33b8a2d56f6f394a943346e4585638a, type: 3}
+  - type: 2
+    prefab: {fileID: 6993113437689658857, guid: e4ee632454e24b440a274acedcf0120b, type: 3}
+--- !u!4 &1750142015
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750142013}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1778373370
 GameObject:
   m_ObjectHideFlags: 0
@@ -7265,5 +7317,6 @@ SceneRoots:
   - {fileID: 1234720841}
   - {fileID: 1219936997}
   - {fileID: 1076991108}
+  - {fileID: 1750142015}
   - {fileID: 964525082}
   - {fileID: 580812476}
