@@ -32,7 +32,7 @@ public static class MapData
         {
             WallData new_building = new WallData
             {
-                wallType = WallType.Empty,
+                wallType = WallType.Wall,
                 x = cellPosition.x,
                 y = cellPosition.y
             };

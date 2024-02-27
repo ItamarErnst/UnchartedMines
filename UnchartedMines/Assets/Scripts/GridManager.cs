@@ -49,6 +49,8 @@ public class GridManager : MonoBehaviour
             wallData.wallType = WallType.Empty;
             wallDisplayDict.Remove(cell);
             wallObjectPool.ReturnWallToPool(wallDisplay);
+
+            CreateWalls(cell);
         }
         else
         {
@@ -104,6 +106,35 @@ public class GridManager : MonoBehaviour
             {
                 wallDisplayDict.Remove(cell);
                 wallObjectPool.ReturnWallToPool(display);
+            }
+        }
+    }
+
+    void CreateWalls(Vector2Int center)
+    {
+        for (int x = -1; x <= 1; x++)
+        {
+            for (int y = -1; y <= 1; y++)
+            {
+                Vector2Int position = new Vector2Int(center.x + x, center.y + y);
+
+                if (position == center)
+                    continue;
+
+                WallData data = MapData.GetMapDataToCell(position);
+                if (data == null)
+                {
+                    data = new WallData()
+                    {
+                        wallType = WallType.Wall,
+                        x = position.x,
+                        y = position.y
+                    };
+                    
+                    MapData.UpdateMapData(position,data);
+                    UpdateWallDisplay(position, data);
+                }
+
             }
         }
     }
