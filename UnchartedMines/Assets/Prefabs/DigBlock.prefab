@@ -1441,17 +1441,17 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: 1
-          inSlope: 0
-          outSlope: 0
+          inSlope: -1
+          outSlope: -1
           tangentMode: 34
           weightedMode: 0
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
           time: 1
-          value: 1
-          inSlope: 0
-          outSlope: 0
+          value: 0
+          inSlope: -1
+          outSlope: -1
           tangentMode: 34
           weightedMode: 0
           inWeight: 0
@@ -4001,7 +4001,7 @@ ParticleSystem:
     lifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.3
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4068,7 +4068,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 0.5764706, g: 0.49411768, b: 0.42352945, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -5506,7 +5506,7 @@ MonoBehaviour:
   - {x: 0.6630219, y: -0.7522959, z: 0}
   m_ShapePathHash: 545517057
   m_Mesh: {fileID: 0}
-  m_InstanceId: 56696
+  m_InstanceId: 61678
   m_LocalBounds:
     m_Center: {x: 0.0058222413, y: -0.05091828, z: 0}
     m_Extent: {x: 0.6571997, y: 0.7091405, z: 0}
