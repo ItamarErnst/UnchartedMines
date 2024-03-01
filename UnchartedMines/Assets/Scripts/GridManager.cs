@@ -6,6 +6,7 @@ using UnityEngine.Serialization;
 
 public class GridManager : MonoBehaviour
 {
+    public BlockDataProvider BlockDataProvider;
     public CameraController camera_controller;
     public WallObjectPool wallObjectPool;
     
@@ -34,7 +35,8 @@ public class GridManager : MonoBehaviour
 
     public void UpdateWall(WallData wallData)
     {
-        if(wallData.wallType == WallType.Floor) return;
+        if(wallData.wallType != WallType.Dig) return;
+        
         Vector2Int cell = new Vector2Int(wallData.x, wallData.y);
 
         if (!wallDisplayDict.TryGetValue(cell, out BaseWallDisplay wallDisplay))
@@ -51,7 +53,7 @@ public class GridManager : MonoBehaviour
 
         if (wallData.currentHits >= wallData.hitsRequired)
         {
-            ReplaceWallWithFloor(cell, wallDisplay);
+            ReplaceWall(cell, WallType.Floor);
             CreateWalls(cell);
         }
         else
@@ -91,13 +93,17 @@ public class GridManager : MonoBehaviour
         
         if (!wallDisplayDict.TryGetValue(cell, out BaseWallDisplay display))
         {
-            BaseWallDisplay newDisplay = wallObjectPool.GetDisplay(wallData.wallType);
+            WallType type = wallData.wallType;
+            BaseWallDisplay newDisplay = wallObjectPool.GetDisplay(type);
+            
+            newDisplay.ChangeColors(BlockDataProvider.GetConfig(type).prefab);
+            
             Vector3 worldPosition = GetWorldPosition(cell);
             newDisplay.transform.position = worldPosition;
             
             wallDisplayDict.Add(cell, newDisplay);
 
-            if (wallData.wallType == WallType.Dig)
+            if (type != WallType.Floor)
             {
                 newDisplay.SetDisplay(wallData);
             }
@@ -108,41 +114,61 @@ public class GridManager : MonoBehaviour
 
     void CreateWalls(Vector2Int center)
     {
-        for (int x = -1; x <= 1; x++)
+        int dig_range = 1;
+        int fog_range = 2;
+
+        for (int x = -fog_range; x <= fog_range; x++)
         {
-            for (int y = -1; y <= 1; y++)
+            for (int y = -fog_range; y <= fog_range; y++)
             {
                 Vector2Int position = new Vector2Int(center.x + x, center.y + y);
 
-                if ((Mathf.Abs(x) == 1 && Mathf.Abs(y) == 1) || (x == 0 && y == 0)) //Skip corners and center
-                    continue;
-
                 WallData data = MapData.GetMapDataToCell(position);
-                if (data == null)
-                {
-                    data = new WallData()
-                    {
-                        wallType = WallType.Dig,
-                        currentHits = 0,
-                        x = position.x,
-                        y = position.y
-                    };
-                    
-                    MapData.UpdateMapData(position,data);
-                    UpdateWallDisplay(position, data);
-                }
 
+                if (Mathf.Abs(x) <= dig_range && Mathf.Abs(y) <= dig_range
+                    && !(Mathf.Abs(x) == dig_range && Mathf.Abs(y) == dig_range))
+                {
+                    if (data == null)
+                    {
+                        CreateWallDataAtCellAndUpdate(position, WallType.Dig);
+                    }
+                    else if (data.wallType == WallType.FogOfWall)
+                    {
+                        ReplaceWall(position,WallType.Dig);
+                    }
+                }
+                else if (data == null
+                         && !(Mathf.Abs(x) == fog_range && Mathf.Abs(y) == fog_range))
+                {
+                    CreateWallDataAtCellAndUpdate(position, WallType.FogOfWall);
+                }
             }
         }
     }
 
-    private void ReplaceWallWithFloor(Vector2Int cell,BaseWallDisplay wallDisplay)
+    private void CreateWallDataAtCellAndUpdate(Vector2Int cell, WallType type)
     {
+        WallData data = new WallData()
+        {
+            wallType = type,
+            currentHits = 0,
+            x = cell.x,
+            y = cell.y
+        };
+        
+        MapData.UpdateMapData(cell,data);
+        UpdateWallDisplay(cell, data);
+    }
+
+    private void ReplaceWall(Vector2Int cell,WallType new_type)
+    {
+        if(!wallDisplayDict.TryGetValue(cell,out BaseWallDisplay wallDisplay)) return;
+        
         ReturnDisplayFromCellToPool(cell, wallDisplay);
         
         WallData data = new WallData()
         {
-            wallType = WallType.Floor,
+            wallType = new_type,
             x = cell.x,
             y = cell.y
         };

@@ -8,4 +8,9 @@ public class BaseWallDisplay : MonoBehaviour
     {
         wallData = data;
     }
+    
+    public virtual void ChangeColors(BaseWallDisplay pooled_object)
+    {
+        
+    }
 }

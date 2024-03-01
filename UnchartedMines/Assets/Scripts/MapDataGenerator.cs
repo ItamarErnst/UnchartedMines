@@ -31,18 +31,30 @@ public static class WallTypeGenerator
         if (Mathf.Abs(x) == gridSize || Mathf.Abs(y) == gridSize)
         {
             // Check if the current position is exactly on the corner
-            if ((x == gridSize && y == gridSize) || (x == -gridSize && y == -gridSize) || (x == gridSize && y == -gridSize) || (x == -gridSize && y == gridSize))
+            if (Mathf.Abs(x) == Mathf.Abs(y))
             {
-                return null; // Null for the corners
+                return null;
             }
             else
             {
-                return WallType.Dig; // Dig for the edges
+                return WallType.FogOfWall; // Dig for the edges
             }
         }
         else
         {
-            return WallType.Floor; // Floor for the inner area
+            // Check if the adjacent cell is on the outer layer
+            if (Mathf.Abs(x + 1) == gridSize || Mathf.Abs(x - 1) == gridSize || Mathf.Abs(y + 1) == gridSize || Mathf.Abs(y - 1) == gridSize)
+            {
+                if (Mathf.Abs(x) == Mathf.Abs(y))
+                {
+                    return WallType.FogOfWall;
+                }
+                return WallType.Dig; // FogOfWall for the cells one layer away from Dig
+            }
+            else
+            {
+                return WallType.Floor; // Floor for the inner area
+            }
         }
     }
 }

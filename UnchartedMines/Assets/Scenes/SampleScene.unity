@@ -6005,6 +6005,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9da7ee509e44ede9feebf463a704aaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BlockDataProvider: {fileID: 1750142014}
   camera_controller: {fileID: 550430961}
   wallObjectPool: {fileID: 580812475}
   cellSize: 1.25

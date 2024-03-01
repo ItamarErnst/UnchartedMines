@@ -61,6 +61,10 @@ public class WallObjectPool : MonoBehaviour
         {
             return GetFloorFromPool();
         }
+        else if (type == WallType.FogOfWall)
+        {
+            return GetWallFromPool();
+        }
 
         return GetWallFromPool();
     }

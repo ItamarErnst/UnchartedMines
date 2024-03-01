@@ -81,4 +81,13 @@ public class WallDisplay : BaseWallDisplay
         dig_pr.emission.SetBurst(0, dig_burst);
         dig_pr.Play();
     }
+
+    public override void ChangeColors(BaseWallDisplay pooled_object)
+    {
+        WallDisplay pooled_wall_display = pooled_object.GetComponent<WallDisplay>();
+        
+        base.ChangeColors(pooled_object);
+        
+        pixel_color_list = pooled_wall_display.pixel_color_list;
+    }
 }
