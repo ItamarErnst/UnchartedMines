@@ -39,7 +39,11 @@ public class GridManager : MonoBehaviour
             return;
         }
 
-        WallDisplay dig_display = wallDisplay.GetComponent<WallDisplay>();
+        if (!wallDisplay.TryGetComponent(out WallDisplay dig_display))
+        {
+            return;
+        }
+        
         dig_display.Dig(++wallData.currentHits);
 
         if (wallData.currentHits >= wallData.hitsRequired)
@@ -105,7 +109,7 @@ public class GridManager : MonoBehaviour
             {
                 Vector2Int position = new Vector2Int(center.x + x, center.y + y);
 
-                if (x == y) //Skip corners and center
+                if ((Mathf.Abs(x) == 1 && Mathf.Abs(y) == 1) || (x == 0 && y == 0)) //Skip corners and center
                     continue;
 
                 WallData data = MapData.GetMapDataToCell(position);
@@ -114,6 +118,7 @@ public class GridManager : MonoBehaviour
                     data = new WallData()
                     {
                         wallType = WallType.Dig,
+                        currentHits = 0,
                         x = position.x,
                         y = position.y
                     };
