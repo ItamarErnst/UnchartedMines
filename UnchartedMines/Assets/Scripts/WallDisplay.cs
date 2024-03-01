@@ -29,6 +29,8 @@ public class WallDisplay : BaseWallDisplay
         {
             Reset();
         }
+        
+        DisableLinearSpriteRenderers(GetPercentageOfHits(data.currentHits));
     }
 
     public void Reset()
