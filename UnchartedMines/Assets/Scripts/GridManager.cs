@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GridManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class GridManager : MonoBehaviour
     private Dictionary<Vector2Int, BaseWallDisplay> wallDisplayDict = new();
     private List<Vector2Int> displayed_walls = new List<Vector2Int>();
 
+    public float cellSize = 1.25f;
+    
     private IEnumerator Start()
     {
         while (!wallObjectPool.IsInitialized())
@@ -89,7 +92,9 @@ public class GridManager : MonoBehaviour
         if (!wallDisplayDict.TryGetValue(cell, out BaseWallDisplay display))
         {
             BaseWallDisplay newDisplay = wallObjectPool.GetDisplay(wallData.wallType);
-            newDisplay.transform.position = new Vector2(cell.x,cell.y);
+            Vector3 worldPosition = GetWorldPosition(cell);
+            newDisplay.transform.position = worldPosition;
+            
             wallDisplayDict.Add(cell, newDisplay);
 
             if (wallData.wallType == WallType.Dig)
@@ -150,5 +155,21 @@ public class GridManager : MonoBehaviour
     {
         wallDisplayDict.Remove(cell);
         wallObjectPool.ReturnWallToPool(wallDisplay,WallType.Dig);
+    }
+    
+    public Vector2Int GetGridCell(Vector3 position)
+    {
+        int x = Mathf.FloorToInt(position.x / cellSize);
+        int y = Mathf.FloorToInt(position.y / cellSize);
+
+        return new Vector2Int(x, y);
+    }
+    
+    public Vector3 GetWorldPosition(Vector2Int gridCell)
+    {
+        float x = gridCell.x * cellSize + cellSize / 2f;
+        float y = gridCell.y * cellSize + cellSize / 2f;
+
+        return new Vector3(x, y, 0f);
     }
 }
