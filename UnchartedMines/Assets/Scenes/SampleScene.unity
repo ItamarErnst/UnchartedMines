@@ -5715,7 +5715,7 @@ MonoBehaviour:
   m_Intensity: 0.1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 000000006b4c2cc6
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -6405,8 +6405,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -970175381
+  m_SortingLayer: -1
   m_SortingOrder: -5
   m_Sprite: {fileID: -1006668649, guid: 78cb2f6a325c4cb41a75ae8a06dfca1b, type: 3}
   m_Color: {r: 0.25490198, g: 0.18431373, b: 0.1254902, a: 1}
@@ -11684,7 +11684,7 @@ MonoBehaviour:
   m_Intensity: 2.01
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 6b4c2cc600000000
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -11829,11 +11829,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wall_config_list:
   - type: 0
-    prefab: {fileID: 6993113437689658857, guid: 3c692b18cef8faf40b8336f17b59c897, type: 3}
+    prefab: {fileID: 6993113437689658857, guid: dcb8386e9bdb5854483e86576eb0fe66, type: 3}
   - type: 1
     prefab: {fileID: 3659991520082038547, guid: c70ad9798e68f5247b956a2fb813a37c, type: 3}
   - type: 2
-    prefab: {fileID: 6993113437689658857, guid: 3c692b18cef8faf40b8336f17b59c897, type: 3}
+    prefab: {fileID: 6993113437689658857, guid: 924840d0f50bf4346b38a566e979460c, type: 3}
 --- !u!4 &1750142015
 Transform:
   m_ObjectHideFlags: 0
