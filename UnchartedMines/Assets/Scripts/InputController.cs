@@ -8,10 +8,8 @@ public class InputController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Vector2Int clickedCell = GetClickedCell();
-            if (clickedCell != Vector2Int.zero)
-            {
-                GameEvent.OnCellClick.Invoke(clickedCell);
-            }
+
+            GameEvent.OnCellClick.Invoke(clickedCell);
         }
     }
 

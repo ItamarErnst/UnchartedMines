@@ -48,9 +48,9 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -5454,9 +5454,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a576a637fd74461a74acaf732193b97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wall: {r: 0, g: 0, b: 0, a: 0}
-  Empty: {r: 1, g: 1, b: 1, a: 0}
-  renderer: {fileID: 0}
+  dig_pr: {fileID: 3982994147025139093}
+  pixel_color_list:
+  - {r: 0.5294118, g: 0.45098042, b: 0.37647063, a: 1}
+  - {r: 0.5764706, g: 0.49411768, b: 0.42352945, a: 1}
+  pixels_renderer_list:
+  - {fileID: 4959183307820936432}
+  - {fileID: 7372210603059751183}
+  - {fileID: 5381731896793402950}
+  - {fileID: 271880825831217610}
+  - {fileID: 7142849452930238218}
+  - {fileID: 3316349181060461250}
+  - {fileID: 126837444604848253}
+  - {fileID: 1773479646094195629}
+  - {fileID: 2686167478861094857}
+  - {fileID: 8726275789024307054}
+  - {fileID: 2721498277578537978}
+  - {fileID: 3050004456303585680}
+  - {fileID: 7038868760283428410}
+  - {fileID: 5360745149742342716}
+  - {fileID: 6167497015917883679}
+  - {fileID: 4799429157225857059}
 --- !u!1 &5034773325791601108
 GameObject:
   m_ObjectHideFlags: 0

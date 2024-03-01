@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,22 +7,36 @@ using UnityEngine;
 public class WallConfig
 {
     public WallType type;
-    public WallDisplay prefab;
+    public BaseWallDisplay prefab;
 }
 
 public class BlockDataProvider : MonoBehaviour
 {
     public List<WallConfig> wall_config_list = new();
-    public Dictionary<WallType, WallConfig> type_to_config = new();
+    private Dictionary<WallType, WallConfig> type_to_config = new();
+    private bool isReady = false;
+    
+    void Awake()
+    {
+        StartCoroutine(InitializePool());
+    }
 
-    private void Awake()
+    IEnumerator InitializePool()
     {
         foreach (WallConfig config in wall_config_list)
         {
             type_to_config.Add(config.type,config);
         }
+        
+        yield return null;
+        isReady = true;
     }
 
+    public bool IsInitialized()
+    {
+        return isReady;
+    }
+    
     public WallConfig GetConfig(WallType type)
     {
         if (type_to_config.TryGetValue(type, out WallConfig config))
@@ -29,6 +44,6 @@ public class BlockDataProvider : MonoBehaviour
             return config;
         }
 
-        return type_to_config[WallType.Wall];
+        return type_to_config[WallType.Dig];
     }
 }

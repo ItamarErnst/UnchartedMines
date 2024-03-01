@@ -1,6 +1,7 @@
 ﻿public enum WallType
 {
-    Wall = 0,
-    Empty = 1,
-    Faded = 2,
+    Dig = 0,
+    Floor = 1,
+    FogOfWall = 2,
+    Void = 3,
 }

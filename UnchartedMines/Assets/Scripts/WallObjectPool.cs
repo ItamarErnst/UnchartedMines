@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class WallObjectPool : MonoBehaviour
 {
-    public Transform wallContainer;
-    public WallDisplay wallPrefab;
-    public int poolSize = 200;
+    public BlockDataProvider BlockDataProvider;
 
-    private Queue<WallDisplay> wallPool = new Queue<WallDisplay>();
+    public Transform wallContainer;
+
+    public int poolSize = 110;
+    public int FloorpoolSize = 110;
+
+    private Queue<BaseWallDisplay> wallPool = new Queue<BaseWallDisplay>();
+    private Queue<BaseWallDisplay> floorPool = new Queue<BaseWallDisplay>();
     public bool isReady = false;
     void Awake()
     {
@@ -17,41 +21,102 @@ public class WallObjectPool : MonoBehaviour
 
     IEnumerator InitializePool()
     {
-        wallPool = new Queue<WallDisplay>();
+        while (!BlockDataProvider.IsInitialized())
+        {
+            yield return null;
+        }
+        
+        wallPool = new Queue<BaseWallDisplay>();
 
         for (int i = 0; i < poolSize; i++)
         {
-            WallDisplay wall = Instantiate(wallPrefab, Vector3.zero, Quaternion.identity,wallContainer);
+            BaseWallDisplay wall = Instantiate(GetPrefab(WallType.Dig), Vector3.zero, Quaternion.identity,wallContainer);
             wall.gameObject.SetActive(false);
             wallPool.Enqueue(wall);
+        }
+        
+        for (int i = 0; i < FloorpoolSize; i++)
+        {
+            BaseWallDisplay floor = Instantiate(GetPrefab(WallType.Floor), Vector3.zero, Quaternion.identity,wallContainer);
+            floor.gameObject.SetActive(false);
+            floorPool.Enqueue(floor);
         }
 
         yield return null;
         isReady = true;
     }
 
-    public WallDisplay GetWallFromPool(Vector2 position)
+    public bool IsInitialized()
+    {
+        return isReady;
+    }
+    
+    public BaseWallDisplay GetDisplay(WallType type)
+    {
+        if (type == WallType.Dig)
+        {
+            return GetWallFromPool();
+        }
+        else if (type == WallType.Floor)
+        {
+            return GetFloorFromPool();
+        }
+
+        return GetWallFromPool();
+    }
+    
+    public BaseWallDisplay GetWallFromPool()
     {
         if (wallPool.Count == 0)
         {
-            ExpandPool();
+            ExpandWallPool();
         }
 
-        WallDisplay wall = wallPool.Dequeue();
-        wall.transform.position = position;
+        BaseWallDisplay wall = wallPool.Dequeue();
         return wall;
     }
-
-    public void ReturnWallToPool(WallDisplay wall)
+    
+    public BaseWallDisplay GetFloorFromPool()
     {
+        if (floorPool.Count == 0)
+        {
+            ExpandFloorPool();
+        }
+
+        BaseWallDisplay floor = floorPool.Dequeue();
+        return floor;
+    }
+
+    public void ReturnWallToPool(BaseWallDisplay wall,WallType type)
+    {
+        wall.gameObject.SetActive(false);
+
+        if (type == WallType.Dig)
+        {
+            wallPool.Enqueue(wall);
+        }
+        else if (type == WallType.Floor)
+        {
+            floorPool.Enqueue(wall);
+        }
+    }
+
+    void ExpandWallPool()
+    {
+        BaseWallDisplay wall = Instantiate(GetPrefab(WallType.Dig), Vector3.zero, Quaternion.identity,wallContainer);
         wall.gameObject.SetActive(false);
         wallPool.Enqueue(wall);
     }
-
-    void ExpandPool()
+    
+    void ExpandFloorPool()
     {
-        WallDisplay wall = Instantiate(wallPrefab, Vector3.zero, Quaternion.identity,wallContainer);
-        wall.gameObject.SetActive(false);
-        wallPool.Enqueue(wall);
+        BaseWallDisplay floor = Instantiate(GetPrefab(WallType.Floor), Vector3.zero, Quaternion.identity,wallContainer);
+        floor.gameObject.SetActive(false);
+        floorPool.Enqueue(floor);
+    }
+
+    BaseWallDisplay GetPrefab(WallType type)
+    {
+        return BlockDataProvider.GetConfig(type).prefab;
     }
 }

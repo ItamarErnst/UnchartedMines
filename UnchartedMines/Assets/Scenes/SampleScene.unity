@@ -5627,7 +5627,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 20, y: 12}
+  m_Size: {x: 25, y: 16}
   m_EdgeRadius: 0
 --- !u!1 &580812474
 GameObject:
@@ -5658,9 +5658,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 315bbc58e88e4e81bf2d5a4c3de19052, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BlockDataProvider: {fileID: 1750142014}
   wallContainer: {fileID: 461529527}
-  wallPrefab: {fileID: 6993113437689658857, guid: b33b8a2d56f6f394a943346e4585638a, type: 3}
   poolSize: 110
+  FloorpoolSize: 110
   isReady: 0
 --- !u!4 &580812476
 Transform:
@@ -6035,7 +6036,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9da7ee509e44ede9feebf463a704aaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BlockDataProvider: {fileID: 1750142014}
   camera_controller: {fileID: 550430961}
   wallObjectPool: {fileID: 580812475}
 --- !u!1 &1114082260
@@ -11831,9 +11831,9 @@ MonoBehaviour:
   - type: 0
     prefab: {fileID: 6993113437689658857, guid: 3c692b18cef8faf40b8336f17b59c897, type: 3}
   - type: 1
-    prefab: {fileID: 6993113437689658857, guid: b33b8a2d56f6f394a943346e4585638a, type: 3}
+    prefab: {fileID: 3659991520082038547, guid: c70ad9798e68f5247b956a2fb813a37c, type: 3}
   - type: 2
-    prefab: {fileID: 6993113437689658857, guid: e4ee632454e24b440a274acedcf0120b, type: 3}
+    prefab: {fileID: 6993113437689658857, guid: 3c692b18cef8faf40b8336f17b59c897, type: 3}
 --- !u!4 &1750142015
 Transform:
   m_ObjectHideFlags: 0

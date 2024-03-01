@@ -5,16 +5,15 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
-    public BlockDataProvider BlockDataProvider;
     public CameraController camera_controller;
     public WallObjectPool wallObjectPool;
     
-    private Dictionary<Vector2Int, WallDisplay> wallDisplayDict = new();
+    private Dictionary<Vector2Int, BaseWallDisplay> wallDisplayDict = new();
     private List<Vector2Int> displayed_walls = new List<Vector2Int>();
 
     private IEnumerator Start()
     {
-        while (!wallObjectPool.isReady)
+        while (!wallObjectPool.IsInitialized())
         {
             yield return null;
         }
@@ -32,34 +31,27 @@ public class GridManager : MonoBehaviour
 
     public void UpdateWall(WallData wallData)
     {
-        if(wallData.wallType == WallType.Empty) return;
-        
+        if(wallData.wallType == WallType.Floor) return;
         Vector2Int cell = new Vector2Int(wallData.x, wallData.y);
 
-        if (!wallDisplayDict.TryGetValue(cell, out WallDisplay wallDisplay))
+        if (!wallDisplayDict.TryGetValue(cell, out BaseWallDisplay wallDisplay))
         {
             return;
         }
-        
-        wallDisplay.SetAsWall();
-        wallDisplay.Shrink(wallData.currentHits++);
+
+        WallDisplay dig_display = wallDisplay.GetComponent<WallDisplay>();
+        dig_display.Dig(++wallData.currentHits);
 
         if (wallData.currentHits >= wallData.hitsRequired)
         {
-            Debug.Log($"Wall of type {wallData.wallType} at position ({wallData.x}, {wallData.y}) destroyed!");
-            wallData.wallType = WallType.Empty;
-            wallDisplay.SetAsEmpty();
-            //wallDisplayDict.Remove(cell);
-            //wallObjectPool.ReturnWallToPool(wallDisplay);
-
+            ReplaceWallWithFloor(cell, wallDisplay);
             CreateWalls(cell);
         }
         else
         {
-            Debug.Log($"Wall of type {wallData.wallType} at position ({wallData.x}, {wallData.y}) hit {wallData.currentHits} times.");
+            MapData.UpdateMapData(cell,wallData);
         }
         
-        MapData.UpdateMapData(cell,wallData);
     }
     
     public void UpdateGridDisplay()
@@ -70,16 +62,15 @@ public class GridManager : MonoBehaviour
         {
             UpdateWallDisplay(cell, MapData.GetMapDataToCell(cell));
         }
-
+        
+        //Remove out of screen displays
         foreach (Vector2Int cell in displayed_walls)
         {
             if (!currentCellsOnScreen.Contains(cell))
             {
-                if(wallDisplayDict.TryGetValue(cell,out WallDisplay wall))
+                if(wallDisplayDict.TryGetValue(cell,out BaseWallDisplay wall))
                 {
-                    wall.SetAsEmpty();
-                    //wallDisplayDict.Remove(cell);
-                    //wallObjectPool.ReturnWallToPool(wall);
+                    ReturnDisplayFromCellToPool(cell, wall);
                 }
             }
         }
@@ -91,30 +82,18 @@ public class GridManager : MonoBehaviour
     {
         if(wallData == null) return;
         
-        if (!wallDisplayDict.TryGetValue(cell, out WallDisplay display))
+        if (!wallDisplayDict.TryGetValue(cell, out BaseWallDisplay display))
         {
-            WallDisplay newDisplay = wallObjectPool.GetWallFromPool(cell);
+            BaseWallDisplay newDisplay = wallObjectPool.GetDisplay(wallData.wallType);
+            newDisplay.transform.position = new Vector2(cell.x,cell.y);
             wallDisplayDict.Add(cell, newDisplay);
 
-            if (wallData.wallType == WallType.Wall)
+            if (wallData.wallType == WallType.Dig)
             {
-                newDisplay.SetAsWall();
-                newDisplay.Shrink(wallData.currentHits);
-            }
-            else
-            {
-                newDisplay.SetAsEmpty();
+                newDisplay.SetDisplay(wallData);
             }
             
             newDisplay.gameObject.SetActive(true);
-        }
-        else
-        {
-            //if (wallData.wallType == WallType.Empty)
-            //{
-            //    wallDisplayDict.Remove(cell);
-            //    wallObjectPool.ReturnWallToPool(display);
-            //}
         }
     }
 
@@ -126,7 +105,7 @@ public class GridManager : MonoBehaviour
             {
                 Vector2Int position = new Vector2Int(center.x + x, center.y + y);
 
-                if (position == center)
+                if (x == y) //Skip corners and center
                     continue;
 
                 WallData data = MapData.GetMapDataToCell(position);
@@ -134,7 +113,7 @@ public class GridManager : MonoBehaviour
                 {
                     data = new WallData()
                     {
-                        wallType = WallType.Wall,
+                        wallType = WallType.Dig,
                         x = position.x,
                         y = position.y
                     };
@@ -145,5 +124,26 @@ public class GridManager : MonoBehaviour
 
             }
         }
+    }
+
+    private void ReplaceWallWithFloor(Vector2Int cell,BaseWallDisplay wallDisplay)
+    {
+        ReturnDisplayFromCellToPool(cell, wallDisplay);
+        
+        WallData data = new WallData()
+        {
+            wallType = WallType.Floor,
+            x = cell.x,
+            y = cell.y
+        };
+                    
+        MapData.UpdateMapData(cell,data);
+        UpdateWallDisplay(cell, data);
+    }
+
+    private void ReturnDisplayFromCellToPool(Vector2Int cell,BaseWallDisplay wallDisplay)
+    {
+        wallDisplayDict.Remove(cell);
+        wallObjectPool.ReturnWallToPool(wallDisplay,WallType.Dig);
     }
 }
