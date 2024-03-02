@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Digger : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Digger : MonoBehaviour
     private Vector2Int cell = Vector2Int.one;
     public Vector2Int target_cell = Vector2Int.zero;
     private bool inProgress = false;
+    private bool startWithX = false;
     private void Awake()
     {
         gridManager = GridManager.GetObject();
@@ -30,6 +32,8 @@ public class Digger : MonoBehaviour
     private IEnumerator GotoTargetCell()
     {
         inProgress = true;
+        startWithX = Random.Range(0, 2) == 0;
+        
         while (cell != target_cell)
         {
             Vector2Int direction = CalculateDirection(transform.position, gridManager.GetWorldPosition(target_cell));
@@ -69,13 +73,27 @@ public class Digger : MonoBehaviour
         int xDiff = targetCell.x - currentCell.x;
         int yDiff = targetCell.y - currentCell.y;
 
-        if (Mathf.Abs(xDiff) > Mathf.Abs(yDiff))
+        if (startWithX)
         {
-            return new Vector2Int(Mathf.Clamp(xDiff, -1, 1), 0);
+            if (xDiff != 0)
+            {
+                return new Vector2Int(Mathf.Clamp(xDiff, -1, 1), 0);
+            }
+            else
+            {
+                return new Vector2Int(0, Mathf.Clamp(yDiff, -1, 1));
+            }
         }
         else
         {
-            return new Vector2Int(0, Mathf.Clamp(yDiff, -1, 1));
+            if (yDiff != 0)
+            {
+                return new Vector2Int(0, Mathf.Clamp(yDiff, -1, 1));
+            }
+            else
+            {
+                return new Vector2Int(Mathf.Clamp(xDiff, -1, 1), 0);
+            }
         }
     }
 
