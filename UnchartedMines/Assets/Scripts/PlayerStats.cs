@@ -11,4 +11,9 @@
     {
         str++;
     }
+
+    public static int GetDigDamage()
+    {
+        return 5;
+    }
 }

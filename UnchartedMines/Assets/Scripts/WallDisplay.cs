@@ -74,7 +74,8 @@ public class WallDisplay : BaseWallDisplay
     
     public int GetHitPercentageDifference(float hits)
     {
-        int currentHits = GetHitPercentageToInt(GetPercentageOfHits(hits - 1));
+        int prev_power = PlayerStats.GetDigDamage() * (PlayerStats.GetPlayerSTR() - 1);
+        int currentHits = GetHitPercentageToInt(GetPercentageOfHits(hits - prev_power));
         int newHits = GetHitPercentageToInt(GetPercentageOfHits(hits));
         
         return Mathf.Max(1,newHits - currentHits);

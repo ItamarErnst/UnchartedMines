@@ -50,7 +50,7 @@ public class GridManager : MonoBehaviour
             return;
         }
 
-        wallData.currentHits += 5 * PlayerStats.GetPlayerSTR();
+        wallData.currentHits += PlayerStats.GetDigDamage() * PlayerStats.GetPlayerSTR();
         dig_display.Dig(wallData.currentHits);
 
         if (wallData.currentHits >= wallData.hitsRequired)
@@ -72,7 +72,10 @@ public class GridManager : MonoBehaviour
         
         foreach (Vector2Int cell in currentCellsOnScreen)
         {
-            UpdateWallDisplay(cell, MapData.GetMapDataToCell(cell));
+            if(!wallDisplayDict.TryGetValue(cell,out _))
+            {
+                UpdateWallDisplay(cell, MapData.GetMapDataToCell(cell));
+            }
         }
         
         //Remove out of screen displays
