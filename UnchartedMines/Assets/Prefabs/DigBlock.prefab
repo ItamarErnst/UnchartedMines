@@ -578,6 +578,7 @@ MonoBehaviour:
   - {fileID: 4799429157225857059}
   shakeDuration: 0.1
   shakeIntensity: 0.07
+  animation: {fileID: 4961883309097423122}
 --- !u!114 &7610015186543220007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -617,9 +618,10 @@ Animation:
   m_GameObject: {fileID: 4627709151732620378}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 4a3c0d338e707654c8eef7bb2f23d1a1, type: 2}
+  m_Animation: {fileID: 7400000, guid: 7dbbc8e63666c3344a821088222b3505, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: 4a3c0d338e707654c8eef7bb2f23d1a1, type: 2}
+  - {fileID: 7400000, guid: 7dbbc8e63666c3344a821088222b3505, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0

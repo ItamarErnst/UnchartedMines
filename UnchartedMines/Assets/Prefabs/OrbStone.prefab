@@ -578,6 +578,7 @@ MonoBehaviour:
   - {fileID: 4799429157225857059}
   shakeDuration: 0.1
   shakeIntensity: 0.07
+  animation: {fileID: 7431264524954389526}
   orb_material: {fileID: 2100000, guid: 5d4373c45adbb5d44bff72fcb88df187, type: 2}
   orb_color: {r: 1, g: 0.77254903, b: 0.5254902, a: 1}
   orb_pixels_renderer_list:
@@ -623,9 +624,10 @@ Animation:
   m_GameObject: {fileID: 4627709151732620378}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 4a3c0d338e707654c8eef7bb2f23d1a1, type: 2}
+  m_Animation: {fileID: 7400000, guid: 7dbbc8e63666c3344a821088222b3505, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: 4a3c0d338e707654c8eef7bb2f23d1a1, type: 2}
+  - {fileID: 7400000, guid: 7dbbc8e63666c3344a821088222b3505, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
