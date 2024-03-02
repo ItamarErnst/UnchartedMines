@@ -27,7 +27,7 @@ public class CameraController : MonoBehaviour
             //    transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
             //    GameEvent.OnCameraMove.Invoke();
             //}
-            
+
             transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
             GameEvent.OnCameraMove.Invoke();
         }

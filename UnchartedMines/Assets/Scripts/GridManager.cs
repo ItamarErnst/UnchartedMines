@@ -66,7 +66,7 @@ public class GridManager : MonoBehaviour
     public void UpdateGridDisplay()
     {
         List<Vector2Int> currentCellsOnScreen = camera_controller.GetCellsOnScreen();
-    
+        
         foreach (Vector2Int cell in currentCellsOnScreen)
         {
             UpdateWallDisplay(cell, MapData.GetMapDataToCell(cell));
@@ -91,24 +91,19 @@ public class GridManager : MonoBehaviour
     {
         if(wallData == null) return;
         
+        WallType type = wallData.wallType;
+
         if (!wallDisplayDict.TryGetValue(cell, out BaseWallDisplay display))
         {
-            WallType type = wallData.wallType;
             BaseWallDisplay newDisplay = wallObjectPool.GetDisplay(type);
-            
             newDisplay.ChangeColors(BlockDataProvider.GetConfig(type).prefab);
-            
-            Vector3 worldPosition = GetWorldPosition(cell);
-            newDisplay.transform.position = worldPosition;
-            
-            wallDisplayDict.Add(cell, newDisplay);
-
-            if (type != WallType.Floor)
-            {
-                newDisplay.SetDisplay(wallData);
-            }
+            newDisplay.SetDisplay(wallData);
             
             newDisplay.gameObject.SetActive(true);
+            
+            newDisplay.transform.position = GetWorldPosition(cell);
+            
+            wallDisplayDict.Add(cell, newDisplay);
         }
     }
 

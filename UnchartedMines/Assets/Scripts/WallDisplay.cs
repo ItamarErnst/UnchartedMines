@@ -6,18 +6,22 @@ using Random = UnityEngine.Random;
 
 public class WallDisplay : BaseWallDisplay
 {
-    public ParticleSystem dig_pr;
-    private ParticleSystem.Burst dig_burst;
+    private ParticleManager particleManager;
 
     public List<Color> pixel_color_list = new List<Color>();
     public List<SpriteRenderer> pixels_renderer_list = new();
+
+    private void Awake()
+    {
+        particleManager = ParticleManager.GetObject();
+    }
 
     public void Dig(int current_hits)
     {
         float hit_presentage = GetPercentageOfHits(current_hits);
         
         DisableLinearSpriteRenderers(hit_presentage);
-        PlayDigParticle(GetHitPercentageDifference(current_hits));
+        particleManager.PlayDigParticle(transform.position,GetHitPercentageDifference(current_hits));
     }
     
     public override void SetDisplay(WallData data)
@@ -25,17 +29,7 @@ public class WallDisplay : BaseWallDisplay
         base.SetDisplay(data);
         SetPixelColors();
 
-        if (wallData.currentHits <= 0)
-        {
-            Reset();
-        }
-        
         DisableLinearSpriteRenderers(GetPercentageOfHits(data.currentHits));
-    }
-
-    public void Reset()
-    {
-        DisableLinearSpriteRenderers(0);
     }
 
     private void SetPixelColors()
@@ -49,12 +43,18 @@ public class WallDisplay : BaseWallDisplay
     void DisableLinearSpriteRenderers(float percentage)
     {
         int numberOfRenderersToDisable = GetHitPercentageToInt(percentage);
-
-        for (int i = 0; i < numberOfRenderersToDisable; i++)
+        
+        for (int i = 0; i < pixels_renderer_list.Count; i++)
         {
-            int indexToDisable = i % pixels_renderer_list.Count;
-            pixels_renderer_list[indexToDisable].enabled = false;
+            pixels_renderer_list[i].enabled = i >= numberOfRenderersToDisable;
         }
+        
+        //int numberOfRenderersToDisable = GetHitPercentageToInt(percentage);
+        //for (int i = 0; i < numberOfRenderersToDisable; i++)
+        //{
+        //    int indexToDisable = i % pixels_renderer_list.Count;
+        //    pixels_renderer_list[indexToDisable].enabled = false;
+        //}
     }
     
     public float GetPercentageOfHits(float current)
@@ -73,13 +73,6 @@ public class WallDisplay : BaseWallDisplay
         int newHits = GetHitPercentageToInt(GetPercentageOfHits(hits));
         
         return newHits - currentHits;
-    }
-    
-    public void PlayDigParticle(int score)
-    {
-        dig_burst.count = score;
-        dig_pr.emission.SetBurst(0, dig_burst);
-        dig_pr.Play();
     }
 
     public override void ChangeColors(BaseWallDisplay pooled_object)
