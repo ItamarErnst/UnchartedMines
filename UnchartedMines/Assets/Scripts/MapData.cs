@@ -45,7 +45,7 @@ public static class MapData
     
     public static void InitializeData()
     {
-        int gridSize = 3;
+        int gridSize = 4;
         List<Vector2Int> center_cells = WallTypeGenerator.GenerateCenterCells(gridSize);
 
         foreach (Vector2Int cellPosition in center_cells)

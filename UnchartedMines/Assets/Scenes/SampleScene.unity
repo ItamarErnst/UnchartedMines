@@ -5034,7 +5034,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 0
   m_Sprite: {fileID: -1006668649, guid: 78cb2f6a325c4cb41a75ae8a06dfca1b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -5627,7 +5627,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 25, y: 16}
+  m_Size: {x: 35, y: 25}
   m_EdgeRadius: 0
 --- !u!1 &580812474
 GameObject:
@@ -6053,8 +6053,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GridManager: {fileID: 1076991109}
-  torch: {fileID: 3392841292496273809, guid: 4a8164db5e626ba4f86c6fda28c2631f, type: 3}
-  torch_container: {fileID: 0}
 --- !u!4 &1076991108
 Transform:
   m_ObjectHideFlags: 0
