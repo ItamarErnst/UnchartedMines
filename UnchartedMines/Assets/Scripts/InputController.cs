@@ -1,9 +1,16 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class InputController : MonoBehaviour
 {
-    public GridManager gridManager;
+    private GridManager gridManager;
+
+    private void Awake()
+    {
+        gridManager = GridManager.GetObject();
+    }
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0))

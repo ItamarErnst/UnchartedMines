@@ -16,6 +16,11 @@ public class GridManager : MonoBehaviour
 
     public float cellSize = 1.25f;
     
+    public static GridManager GetObject()
+    {
+        return GameObject.Find("GridManager").GetComponent<GridManager>();
+    }
+    
     private IEnumerator Start()
     {
         while (!wallObjectPool.IsInitialized())
