@@ -5381,8 +5381,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65128e29d29941008c87713cdd4cfae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dirt:
+    type: 0
+    amount: 0
+  copper:
+    type: 1
+    amount: 0
   text_display: {fileID: 779406648}
-  dirt: 0
+  text_display_copper: {fileID: 1254665753}
 --- !u!4 &408452049
 Transform:
   m_ObjectHideFlags: 0
@@ -8888,7 +8894,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeButton: {fileID: 1409588342}
   text_display: {fileID: 1215038155}
-  upgrade_cost: 50
+  upgrade_cost: 32
+  multiplayer: 1.42
 --- !u!4 &1932788804
 Transform:
   m_ObjectHideFlags: 0

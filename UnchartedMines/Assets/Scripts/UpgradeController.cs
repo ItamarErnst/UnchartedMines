@@ -9,10 +9,9 @@ public class UpgradeController : MonoBehaviour
     public Button upgradeButton;
     public TextMeshProUGUI text_display;
 
-
-    public int upgrade_cost = 50;
+    public int upgrade_cost = 32;
+    public float multiplayer = 1.3f;
     private int upgrade_level = 1;
-    private float multiplayer = 1.3f;
 
     private void Awake()
     {
@@ -27,9 +26,9 @@ public class UpgradeController : MonoBehaviour
 
     private void UpgradePlayerSTR()
     {
-        if (resourceController.CanPurchase(GetPriceToLevel()))
+        if (resourceController.CanPurchase(GetPriceToLevel(),ResourceType.Dirt))
         {
-            resourceController.RemoveResource(GetPriceToLevel());
+            resourceController.RemoveResource(GetPriceToLevel(),ResourceType.Dirt);
             PlayerStats.AddPlayerSTR();
             upgrade_level++;
             

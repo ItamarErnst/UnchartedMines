@@ -26,7 +26,12 @@ public class GameController : MonoBehaviour
     {
         if (type == WallType.Dig)
         {
-            resourceController.AddResource(16);
+            resourceController.AddResource(16,ResourceType.Dirt);
+        }
+        
+        if (type == WallType.Copper)
+        {
+            resourceController.AddResource(3,ResourceType.Copper);
         }
     }
     
