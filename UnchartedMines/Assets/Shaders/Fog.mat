@@ -44,7 +44,7 @@ Material:
     - _FogSize: 1
     - _FogSpeed: 1
     m_Colors:
-    - _FogColor: {r: 0.34905654, g: 0.29164675, b: 0.22227654, a: 0.11764706}
+    - _FogColor: {r: 0.5660378, g: 0.43212113, b: 0.2803489, a: 0.3137255}
   m_BuildTextureStacks: []
 --- !u!114 &2779045403923672439
 MonoBehaviour:
