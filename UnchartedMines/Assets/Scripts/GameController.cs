@@ -7,14 +7,28 @@ using UnityEngine.Events;
 public class GameController : MonoBehaviour
 {
     public GridManager GridManager;
-    
+    private ResourceController resourceController;
+
+    private void Awake()
+    {
+        resourceController = ResourceController.GetObject();
+    }
+
     void Start()
     {
         GameEvent.OnCellClick.AddListener(HandleCellClick);
         GameEvent.OnRightClickCell.AddListener(HandleRightClick);
         GameEvent.OnCameraMove.AddListener(OnCameraMove);
+        GameEvent.OnDigComplete.AddListener(OnDigComplete);
     }
-    
+
+    void OnDigComplete(WallType type)
+    {
+        if (type == WallType.Dig)
+        {
+            resourceController.AddResource(16);
+        }
+    }
     
     void HandleCellClick(Vector2Int clickedCell)
     {

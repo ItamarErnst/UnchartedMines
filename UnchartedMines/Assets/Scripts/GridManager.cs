@@ -49,11 +49,13 @@ public class GridManager : MonoBehaviour
         {
             return;
         }
-        
-        dig_display.Dig(++wallData.currentHits);
+
+        wallData.currentHits += 5 * PlayerStats.GetPlayerSTR();
+        dig_display.Dig(wallData.currentHits);
 
         if (wallData.currentHits >= wallData.hitsRequired)
         {
+            GameEvent.OnDigComplete.Invoke(wallData.wallType);
             ReplaceWall(cell, WallType.Floor,false);
             CreateWalls(cell);
         }

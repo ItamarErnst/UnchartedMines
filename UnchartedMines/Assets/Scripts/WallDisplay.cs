@@ -23,6 +23,7 @@ public class WallDisplay : BaseWallDisplay
         float hit_presentage = GetPercentageOfHits(current_hits);
         
         DisableLinearSpriteRenderers(hit_presentage);
+
         particleManager.PlayDigParticle(transform.position,GetHitPercentageDifference(current_hits));
     }
     
@@ -76,7 +77,7 @@ public class WallDisplay : BaseWallDisplay
         int currentHits = GetHitPercentageToInt(GetPercentageOfHits(hits - 1));
         int newHits = GetHitPercentageToInt(GetPercentageOfHits(hits));
         
-        return newHits - currentHits;
+        return Mathf.Max(1,newHits - currentHits);
     }
 
     public override void ChangeColors(BaseWallDisplay pooled_object)
