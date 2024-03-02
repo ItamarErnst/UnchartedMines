@@ -57,7 +57,7 @@ public class WallObjectPool : MonoBehaviour
         {
             return GetWallFromPool();
         }
-        else if (type == WallType.Floor)
+        else if (type == WallType.Floor || type == WallType.Torch)
         {
             return GetFloorFromPool();
         }

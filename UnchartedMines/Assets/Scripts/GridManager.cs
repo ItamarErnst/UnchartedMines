@@ -155,7 +155,7 @@ public class GridManager : MonoBehaviour
         UpdateWallDisplay(cell, data);
     }
 
-    private void ReplaceWall(Vector2Int cell,WallType new_type)
+    public void ReplaceWall(Vector2Int cell,WallType new_type)
     {
         if(!wallDisplayDict.TryGetValue(cell,out BaseWallDisplay wallDisplay)) return;
         

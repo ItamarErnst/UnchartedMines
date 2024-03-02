@@ -7,8 +7,6 @@ using UnityEngine.Events;
 public class GameController : MonoBehaviour
 {
     public GridManager GridManager;
-    public GameObject torch;
-    public Transform torch_container;
     
     void Start()
     {
@@ -37,8 +35,7 @@ public class GameController : MonoBehaviour
             
             if (wallData.wallType == WallType.Floor)
             {
-                GameObject torch = Instantiate(this.torch,torch_container);
-                torch.transform.position = GridManager.GetWorldPosition(clickedCell);
+                GridManager.ReplaceWall(clickedCell,WallType.Torch);
             }
         }
     }
