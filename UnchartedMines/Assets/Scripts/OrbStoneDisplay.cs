@@ -36,11 +36,9 @@ public class OrbStoneDisplay : WallDisplay
 
     public override void ChangeColors(BaseWallDisplay pooled_object)
     {
-        OrbStoneDisplay pooled_wall_display = pooled_object.GetComponent<OrbStoneDisplay>();
+        OrbStoneDisplay pooled_ore_display = pooled_object.GetComponent<OrbStoneDisplay>();
         
-        base.ChangeColors(pooled_object);
-        
-        pixel_color_list = pooled_wall_display.pixel_color_list;
-        fogged_pixel_color_list = pooled_wall_display.fogged_pixel_color_list;
+        pixel_color_list = pooled_ore_display.pixel_color_list;
+        fogged_pixel_color_list = pooled_ore_display.fogged_pixel_color_list;
     }
 }

@@ -52,6 +52,8 @@ public static class WallTypeGenerator
             return true;
         }
 
+        if (Mathf.Abs(x) == Mathf.Abs(y) && Mathf.Abs(y) == 2) return true;
+
         return false;
     }
 }

@@ -6,6 +6,8 @@ using Random = UnityEngine.Random;
 
 public class WallDisplay : BaseWallDisplay
 {
+    public Transform holder;
+    
     private ParticleManager particleManager;
     public Material default_material;
 
@@ -13,6 +15,9 @@ public class WallDisplay : BaseWallDisplay
     public List<Color> fogged_pixel_color_list = new List<Color>();
     public List<SpriteRenderer> pixels_renderer_list = new();
 
+    public float shakeDuration = 0.2f;
+    public float shakeIntensity = 0.1f;
+    
     private void Awake()
     {
         particleManager = ParticleManager.GetObject();
@@ -22,16 +27,16 @@ public class WallDisplay : BaseWallDisplay
     {
         float hit_presentage = GetPercentageOfHits(current_hits);
         
+        StartShakeAnimation();
         DisableLinearSpriteRenderers(hit_presentage);
-
         particleManager.PlayDigParticle(transform.position,GetHitPercentageDifference(current_hits));
     }
     
     public override void SetDisplay(WallData data)
     {
         base.SetDisplay(data);
+        holder.transform.localPosition = Vector3.zero;
         SetPixelColors();
-
         DisableLinearSpriteRenderers(GetPercentageOfHits(data.currentHits));
     }
 
@@ -89,5 +94,31 @@ public class WallDisplay : BaseWallDisplay
         
         pixel_color_list = pooled_wall_display.pixel_color_list;
         fogged_pixel_color_list = pooled_wall_display.fogged_pixel_color_list;
+    }
+
+    public void StartShakeAnimation()
+    {
+        StartCoroutine(AnimateHit());
+    }
+
+    private IEnumerator AnimateHit()
+    {
+        Vector3 originalPosition = Vector3.zero;
+
+        float elapsed = 0f;
+
+        while (elapsed < shakeDuration)
+        {
+            float x = originalPosition.x + Random.Range(-1f, 1f) * shakeIntensity;
+            float y = originalPosition.y + Random.Range(-1f, 1f) * shakeIntensity;
+
+            holder.transform.localPosition = new Vector3(x, y, originalPosition.z);
+
+            elapsed += Time.deltaTime;
+
+            yield return null;
+        }
+
+        holder.transform.localPosition = Vector3.zero;
     }
 }

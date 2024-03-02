@@ -146,7 +146,7 @@ public class GridManager : MonoBehaviour
                 else if (data == null
                          && !(Mathf.Abs(x) == fog_range && Mathf.Abs(y) == fog_range))
                 {
-                    WallType type = Random.Range(0, 15) == 2 ? WallType.Orb : WallType.Dig;
+                    WallType type = Random.Range(0, 32) == 2 ? WallType.Copper : WallType.Dig;
                     CreateWallDataAtCellAndUpdate(position, type,true);
                 }
             }

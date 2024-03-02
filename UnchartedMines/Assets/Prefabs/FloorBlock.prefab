@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 744509821307619580}
   - component: {fileID: 833941536999096028}
+  - component: {fileID: 4817454785632761007}
   m_Layer: 0
   m_Name: FloorBlock
   m_TagString: Untagged
@@ -33,7 +34,7 @@ Transform:
   - {fileID: 7590593262158173107}
   - {fileID: 4189590912931969824}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 1.5250001}
 --- !u!114 &833941536999096028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52,6 +53,22 @@ MonoBehaviour:
   - {r: 0.5568628, g: 0.46666667, b: 0.4, a: 1}
   - {r: 0.5188679, g: 0.42516398, b: 0.35488605, a: 1}
   torch: {fileID: 6723339736925066097}
+--- !u!111 &4817454785632761007
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4627709151732620378}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 4a3c0d338e707654c8eef7bb2f23d1a1, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 4a3c0d338e707654c8eef7bb2f23d1a1, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &6859041259891743304
 GameObject:
   m_ObjectHideFlags: 0

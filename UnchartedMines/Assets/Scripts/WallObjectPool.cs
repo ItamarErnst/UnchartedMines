@@ -47,7 +47,7 @@ public class WallObjectPool : MonoBehaviour
 
         for (int i = 0; i < orbPoolSize; i++)
         {
-            BaseWallDisplay orb = Instantiate(GetPrefab(WallType.Orb), Vector3.zero, Quaternion.identity,wallContainer);
+            BaseWallDisplay orb = Instantiate(GetPrefab(WallType.Copper), Vector3.zero, Quaternion.identity,wallContainer);
             orb.gameObject.SetActive(false);
             floorPool.Enqueue(orb);
         }
@@ -71,7 +71,7 @@ public class WallObjectPool : MonoBehaviour
         {
             return GetFloorFromPool();
         }
-        else if (type == WallType.Orb)
+        else if (type == WallType.Copper)
         {
             return GetOrbFromPool();
         }
@@ -124,7 +124,7 @@ public class WallObjectPool : MonoBehaviour
         {
             floorPool.Enqueue(wall);
         }
-        else if (type == WallType.Orb)
+        else if (type == WallType.Copper)
         {
             orbPool.Enqueue(wall);
         }
@@ -146,7 +146,7 @@ public class WallObjectPool : MonoBehaviour
     
     void ExpandOrbPool()
     {
-        BaseWallDisplay orb = Instantiate(GetPrefab(WallType.Orb), Vector3.zero, Quaternion.identity,wallContainer);
+        BaseWallDisplay orb = Instantiate(GetPrefab(WallType.Copper), Vector3.zero, Quaternion.identity,wallContainer);
         orb.gameObject.SetActive(false);
         orbPool.Enqueue(orb);
     }
