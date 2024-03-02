@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Glow
+  m_Name: GlowFX
   m_Shader: {fileID: -6465566751694194690, guid: 4af997ec71fe17f4f813db80c9fd3af5, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -50,10 +50,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Intesity: 1
+    - _Intesity: 2
     - _MaxGlow: 3
-    - _MinGlow: 5
-    - _Speed: 2
+    - _MinGlow: 2
+    - _Speed: 3
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
