@@ -27,39 +27,30 @@ public static class WallTypeGenerator
 
     public static WallType? GetWallType(int x, int y, int gridSize)
     {
-        // Check if the current position is on the most outer layer
-        if (Mathf.Abs(x) == gridSize || Mathf.Abs(y) == gridSize)
+        if (Mathf.Abs(x + 1) >= gridSize || Mathf.Abs(x - 1) >= gridSize || Mathf.Abs(y + 1) >= gridSize || Mathf.Abs(y - 1) >= gridSize)
         {
-            // Check if the current position is exactly on the corner
-            if (Mathf.Abs(x) == Mathf.Abs(y))
+            if (Mathf.Abs(x) == Mathf.Abs(y) && Mathf.Abs(x) == gridSize && Mathf.Abs(y) == gridSize)
             {
                 return null;
             }
-            else
-            {
-                return WallType.FogOfWall; // Dig for the edges
-            }
+            
+            return WallType.FogOfWall;
         }
-        else
+        
+        if (Mathf.Abs(x + 2) == gridSize || Mathf.Abs(x - 2) == gridSize || Mathf.Abs(y + 2) == gridSize || Mathf.Abs(y - 2) == gridSize)
         {
-            // Check if the adjacent cell is on the outer layer
-            if (Mathf.Abs(x + 1) == gridSize || Mathf.Abs(x - 1) == gridSize || Mathf.Abs(y + 1) == gridSize || Mathf.Abs(y - 1) == gridSize)
+            if (Mathf.Abs(x) == Mathf.Abs(y))
             {
-                if (Mathf.Abs(x) == Mathf.Abs(y))
-                {
-                    return WallType.FogOfWall;
-                }
-                return WallType.Dig; // FogOfWall for the cells one layer away from Dig
+                return WallType.FogOfWall;
             }
-            else
-            {
-                if (x == 0 && y == 0)
-                {
-                    return WallType.Torch;
-                }
-                
-                return WallType.Floor; // Floor for the inner area
-            }
+            return WallType.Dig;
         }
+        
+        if (x == 0 && y == 0)
+        {
+            return WallType.Torch;
+        }
+        
+        return WallType.Floor;
     }
 }

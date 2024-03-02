@@ -110,7 +110,7 @@ public class GridManager : MonoBehaviour
     void CreateWalls(Vector2Int center)
     {
         int dig_range = 1;
-        int fog_range = 2;
+        int fog_range = 3;
 
         for (int x = -fog_range; x <= fog_range; x++)
         {
