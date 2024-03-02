@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edefc5f5582e4f5e8590cc624b21500d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animation: {fileID: 4817454785632761007}
   renderer: {fileID: 3434730821964126427}
   floor_color_list:
   - {r: 0.5764706, g: 0.49411768, b: 0.42352945, a: 1}
@@ -62,9 +63,10 @@ Animation:
   m_GameObject: {fileID: 4627709151732620378}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 4a3c0d338e707654c8eef7bb2f23d1a1, type: 2}
+  m_Animation: {fileID: 7400000, guid: 7dbbc8e63666c3344a821088222b3505, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: 4a3c0d338e707654c8eef7bb2f23d1a1, type: 2}
+  - {fileID: 7400000, guid: 7dbbc8e63666c3344a821088222b3505, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0

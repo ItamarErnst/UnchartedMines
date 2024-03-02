@@ -108,6 +108,7 @@ public class GridManager : MonoBehaviour
             newDisplay.gameObject.SetActive(true);
             
             newDisplay.transform.position = GetWorldPosition(cell);
+            newDisplay.PlaySpawn(!BlockDataProvider.CanDig(type));
             
             wallDisplayDict.Add(cell, newDisplay);
         }
