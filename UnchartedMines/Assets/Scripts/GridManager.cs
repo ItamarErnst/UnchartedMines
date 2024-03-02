@@ -201,7 +201,7 @@ public class GridManager : MonoBehaviour
     private void ReturnDisplayFromCellToPool(Vector2Int cell,BaseWallDisplay wallDisplay)
     {
         wallDisplayDict.Remove(cell);
-        wallObjectPool.ReturnWallToPool(wallDisplay,WallType.Dig);
+        wallObjectPool.ReturnWallToPool(wallDisplay,MapData.GetMapDataToCell(cell).wallType);
     }
     
     public Vector2Int GetGridCell(Vector3 position)

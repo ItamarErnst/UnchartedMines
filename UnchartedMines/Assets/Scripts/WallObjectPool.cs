@@ -29,8 +29,6 @@ public class WallObjectPool : MonoBehaviour
             yield return null;
         }
         
-        wallPool = new Queue<BaseWallDisplay>();
-
         for (int i = 0; i < poolSize; i++)
         {
             BaseWallDisplay wall = Instantiate(GetPrefab(WallType.Dig), Vector3.zero, Quaternion.identity,wallContainer);
