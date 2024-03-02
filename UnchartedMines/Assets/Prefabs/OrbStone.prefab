@@ -513,7 +513,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 744509821307619580}
-  - component: {fileID: 6993113437689658857}
+  - component: {fileID: 6373669382093712380}
   - component: {fileID: 7610015186543220007}
   m_Layer: 0
   m_Name: OrbStone
@@ -555,7 +555,7 @@ Transform:
   - {fileID: 5247049097679080086}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6993113437689658857
+--- !u!114 &6373669382093712380
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -564,10 +564,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 4627709151732620378}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a576a637fd74461a74acaf732193b97, type: 3}
+  m_Script: {fileID: 11500000, guid: e629a2dade8d8ce438de1771f68b7480, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  default_material: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   pixel_color_list:
+  - {r: 0.5294118, g: 0.45098042, b: 0.37647063, a: 1}
+  - {r: 0.5764706, g: 0.49411768, b: 0.42352945, a: 1}
+  fogged_pixel_color_list:
   - {r: 0.4, g: 0.3019608, b: 0.22745098, a: 1}
   - {r: 0.40784314, g: 0.32156864, b: 0.2509804, a: 1}
   pixels_renderer_list:
@@ -587,6 +591,17 @@ MonoBehaviour:
   - {fileID: 5360745149742342716}
   - {fileID: 6167497015917883679}
   - {fileID: 4799429157225857059}
+  orb_material: {fileID: 2100000, guid: 5d4373c45adbb5d44bff72fcb88df187, type: 2}
+  orb_color: {r: 1, g: 0.77254903, b: 0.5254902, a: 1}
+  orb_pixels_renderer_list:
+  - {fileID: 7372210603059751183}
+  - {fileID: 3316349181060461250}
+  - {fileID: 126837444604848253}
+  - {fileID: 1773479646094195629}
+  - {fileID: 2686167478861094857}
+  - {fileID: 8726275789024307054}
+  - {fileID: 2721498277578537978}
+  - {fileID: 6167497015917883679}
 --- !u!114 &7610015186543220007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -613,7 +628,7 @@ MonoBehaviour:
   - {x: 0.6630219, y: -0.7522959, z: 0}
   m_ShapePathHash: 545517057
   m_Mesh: {fileID: 0}
-  m_InstanceId: 46832
+  m_InstanceId: 32606
   m_LocalBounds:
     m_Center: {x: 0.0058222413, y: -0.05091828, z: 0}
     m_Extent: {x: 0.6571997, y: 0.7091405, z: 0}

@@ -7,8 +7,10 @@ using Random = UnityEngine.Random;
 public class WallDisplay : BaseWallDisplay
 {
     private ParticleManager particleManager;
+    public Material default_material;
 
     public List<Color> pixel_color_list = new List<Color>();
+    public List<Color> fogged_pixel_color_list = new List<Color>();
     public List<SpriteRenderer> pixels_renderer_list = new();
 
     private void Awake()
@@ -32,11 +34,20 @@ public class WallDisplay : BaseWallDisplay
         DisableLinearSpriteRenderers(GetPercentageOfHits(data.currentHits));
     }
 
-    private void SetPixelColors()
+    protected virtual void SetPixelColors()
     {
         foreach (SpriteRenderer pixel in pixels_renderer_list)
         {
-            pixel.color = pixel_color_list[Random.Range(0, pixel_color_list.Count)];
+            if (wallData.fogged)
+            {
+                pixel.color = fogged_pixel_color_list[Random.Range(0, fogged_pixel_color_list.Count)];
+                pixel.material = default_material;
+            }
+            else
+            {
+                pixel.color = pixel_color_list[Random.Range(0, pixel_color_list.Count)];
+                pixel.material = default_material;
+            }
         }
     }
     
@@ -48,13 +59,6 @@ public class WallDisplay : BaseWallDisplay
         {
             pixels_renderer_list[i].enabled = i >= numberOfRenderersToDisable;
         }
-        
-        //int numberOfRenderersToDisable = GetHitPercentageToInt(percentage);
-        //for (int i = 0; i < numberOfRenderersToDisable; i++)
-        //{
-        //    int indexToDisable = i % pixels_renderer_list.Count;
-        //    pixels_renderer_list[indexToDisable].enabled = false;
-        //}
     }
     
     public float GetPercentageOfHits(float current)
@@ -82,5 +86,6 @@ public class WallDisplay : BaseWallDisplay
         base.ChangeColors(pooled_object);
         
         pixel_color_list = pooled_wall_display.pixel_color_list;
+        fogged_pixel_color_list = pooled_wall_display.fogged_pixel_color_list;
     }
 }

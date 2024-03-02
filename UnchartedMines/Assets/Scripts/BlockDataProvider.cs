@@ -46,4 +46,9 @@ public class BlockDataProvider : MonoBehaviour
 
         return type_to_config[WallType.Dig];
     }
+
+    public bool CanDig(WallType type)
+    {
+        return type == WallType.Dig || type == WallType.Orb;
+    }
 }

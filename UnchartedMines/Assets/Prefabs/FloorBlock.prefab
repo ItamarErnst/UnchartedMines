@@ -52,7 +52,6 @@ MonoBehaviour:
   - {r: 0.5568628, g: 0.46666667, b: 0.4, a: 1}
   - {r: 0.5188679, g: 0.42516398, b: 0.35488605, a: 1}
   torch: {fileID: 6723339736925066097}
-  is_torched: 0
 --- !u!1 &6859041259891743304
 GameObject:
   m_ObjectHideFlags: 0

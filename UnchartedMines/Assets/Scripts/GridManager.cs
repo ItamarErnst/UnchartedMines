@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class GridManager : MonoBehaviour
 {
@@ -35,7 +36,7 @@ public class GridManager : MonoBehaviour
 
     public void UpdateWall(WallData wallData)
     {
-        if(wallData.wallType != WallType.Dig) return;
+        if(!BlockDataProvider.CanDig(wallData.wallType) || wallData.fogged) return;
         
         Vector2Int cell = new Vector2Int(wallData.x, wallData.y);
 
@@ -53,7 +54,7 @@ public class GridManager : MonoBehaviour
 
         if (wallData.currentHits >= wallData.hitsRequired)
         {
-            ReplaceWall(cell, WallType.Floor);
+            ReplaceWall(cell, WallType.Floor,false);
             CreateWalls(cell);
         }
         else
@@ -105,6 +106,11 @@ public class GridManager : MonoBehaviour
             
             wallDisplayDict.Add(cell, newDisplay);
         }
+        else
+        {
+            display.ChangeColors(BlockDataProvider.GetConfig(type).prefab);
+            display.SetDisplay(wallData);
+        }
     }
 
     void CreateWalls(Vector2Int center)
@@ -125,28 +131,30 @@ public class GridManager : MonoBehaviour
                 {
                     if (data == null)
                     {
-                        CreateWallDataAtCellAndUpdate(position, WallType.Dig);
+                        CreateWallDataAtCellAndUpdate(position, WallType.Dig,false);
                     }
-                    else if (data.wallType == WallType.FogOfWall)
+                    else if (data.fogged)
                     {
-                        ReplaceWall(position,WallType.Dig);
+                        UpdateFogData(position,false);
                     }
                 }
                 else if (data == null
                          && !(Mathf.Abs(x) == fog_range && Mathf.Abs(y) == fog_range))
                 {
-                    CreateWallDataAtCellAndUpdate(position, WallType.FogOfWall);
+                    WallType type = Random.Range(0, 15) == 2 ? WallType.Orb : WallType.Dig;
+                    CreateWallDataAtCellAndUpdate(position, type,true);
                 }
             }
         }
     }
 
-    private void CreateWallDataAtCellAndUpdate(Vector2Int cell, WallType type)
+    private void CreateWallDataAtCellAndUpdate(Vector2Int cell, WallType type,bool fogged)
     {
         WallData data = new WallData()
         {
             wallType = type,
             currentHits = 0,
+            fogged = fogged,
             x = cell.x,
             y = cell.y
         };
@@ -155,7 +163,7 @@ public class GridManager : MonoBehaviour
         UpdateWallDisplay(cell, data);
     }
 
-    public void ReplaceWall(Vector2Int cell,WallType new_type)
+    public void ReplaceWall(Vector2Int cell,WallType new_type,bool fogged)
     {
         if(!wallDisplayDict.TryGetValue(cell,out BaseWallDisplay wallDisplay)) return;
         
@@ -164,10 +172,22 @@ public class GridManager : MonoBehaviour
         WallData data = new WallData()
         {
             wallType = new_type,
+            fogged = fogged,
             x = cell.x,
             y = cell.y
         };
                     
+        MapData.UpdateMapData(cell,data);
+        UpdateWallDisplay(cell, data);
+    }
+    
+    public void UpdateFogData(Vector2Int cell,bool fogged)
+    {
+        WallData data = MapData.GetMapDataToCell(cell);
+        if(data == null) return;
+
+        data.fogged = fogged;
+        
         MapData.UpdateMapData(cell,data);
         UpdateWallDisplay(cell, data);
     }

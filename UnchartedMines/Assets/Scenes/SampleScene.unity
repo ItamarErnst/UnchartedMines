@@ -5034,7 +5034,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: -1006668649, guid: 78cb2f6a325c4cb41a75ae8a06dfca1b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -5661,7 +5661,8 @@ MonoBehaviour:
   BlockDataProvider: {fileID: 1750142014}
   wallContainer: {fileID: 461529527}
   poolSize: 110
-  FloorpoolSize: 110
+  floorPoolSize: 110
+  orbPoolSize: 25
   isReady: 0
 --- !u!4 &580812476
 Transform:
@@ -6839,11 +6840,11 @@ MonoBehaviour:
   - type: 0
     prefab: {fileID: 6993113437689658857, guid: dcb8386e9bdb5854483e86576eb0fe66, type: 3}
   - type: 2
-    prefab: {fileID: 6993113437689658857, guid: 924840d0f50bf4346b38a566e979460c, type: 3}
+    prefab: {fileID: 833941536999096028, guid: c70ad9798e68f5247b956a2fb813a37c, type: 3}
   - type: 1
     prefab: {fileID: 833941536999096028, guid: c70ad9798e68f5247b956a2fb813a37c, type: 3}
   - type: 3
-    prefab: {fileID: 833941536999096028, guid: c70ad9798e68f5247b956a2fb813a37c, type: 3}
+    prefab: {fileID: 6373669382093712380, guid: 039a00c4e91cad54281bec2c3298088c, type: 3}
 --- !u!4 &1750142015
 Transform:
   m_ObjectHideFlags: 0

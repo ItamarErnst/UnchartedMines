@@ -567,6 +567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a576a637fd74461a74acaf732193b97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  default_material: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   pixel_color_list:
   - {r: 0.4, g: 0.3019608, b: 0.22745098, a: 1}
   - {r: 0.40784314, g: 0.32156864, b: 0.2509804, a: 1}
@@ -613,7 +614,7 @@ MonoBehaviour:
   - {x: 0.6630219, y: -0.7522959, z: 0}
   m_ShapePathHash: 545517057
   m_Mesh: {fileID: 0}
-  m_InstanceId: 32232
+  m_InstanceId: 33314
   m_LocalBounds:
     m_Center: {x: 0.0058222413, y: -0.05091828, z: 0}
     m_Extent: {x: 0.6571997, y: 0.7091405, z: 0}

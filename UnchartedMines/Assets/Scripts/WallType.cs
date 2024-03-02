@@ -2,6 +2,6 @@
 {
     Dig = 0,
     Floor = 1,
-    FogOfWall = 2,
-    Torch = 3,
+    Torch = 2,
+    Orb = 3,
 }

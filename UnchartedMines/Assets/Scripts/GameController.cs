@@ -35,7 +35,7 @@ public class GameController : MonoBehaviour
             
             if (wallData.wallType == WallType.Floor)
             {
-                GridManager.ReplaceWall(clickedCell,WallType.Torch);
+                GridManager.ReplaceWall(clickedCell,WallType.Torch,false);
             }
         }
     }

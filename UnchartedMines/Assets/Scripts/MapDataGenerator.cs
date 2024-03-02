@@ -27,22 +27,13 @@ public static class WallTypeGenerator
 
     public static WallType? GetWallType(int x, int y, int gridSize)
     {
-        if (Mathf.Abs(x + 1) >= gridSize || Mathf.Abs(x - 1) >= gridSize || Mathf.Abs(y + 1) >= gridSize || Mathf.Abs(y - 1) >= gridSize)
+        if (Mathf.Abs(x + 2) >= gridSize || Mathf.Abs(x - 2) >= gridSize || Mathf.Abs(y + 2) >= gridSize || Mathf.Abs(y - 2) >= gridSize)
         {
             if (Mathf.Abs(x) == Mathf.Abs(y) && Mathf.Abs(x) == gridSize && Mathf.Abs(y) == gridSize)
             {
                 return null;
             }
             
-            return WallType.FogOfWall;
-        }
-        
-        if (Mathf.Abs(x + 2) == gridSize || Mathf.Abs(x - 2) == gridSize || Mathf.Abs(y + 2) == gridSize || Mathf.Abs(y - 2) == gridSize)
-        {
-            if (Mathf.Abs(x) == Mathf.Abs(y))
-            {
-                return WallType.FogOfWall;
-            }
             return WallType.Dig;
         }
         
@@ -52,5 +43,15 @@ public static class WallTypeGenerator
         }
         
         return WallType.Floor;
+    }
+    
+    public static bool IsFogged(int x, int y, int gridSize)
+    {
+        if (Mathf.Abs(x + 1) >= gridSize || Mathf.Abs(x - 1) >= gridSize || Mathf.Abs(y + 1) >= gridSize || Mathf.Abs(y - 1) >= gridSize)
+        {
+            return true;
+        }
+
+        return false;
     }
 }

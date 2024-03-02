@@ -51,17 +51,18 @@ public static class MapData
         foreach (Vector2Int cellPosition in center_cells)
         {
             WallType? currentType = WallTypeGenerator.GetWallType(cellPosition.x, cellPosition.y, gridSize);
+            bool fogged = WallTypeGenerator.IsFogged(cellPosition.x, cellPosition.y, gridSize);
 
             if (currentType.HasValue)
             {
                 WallData new_building = new WallData
                 {
                     wallType = currentType.Value,
+                    fogged = fogged,
                     x = cellPosition.x,
                     y = cellPosition.y
                 };
 
-                // Add the data to the dictionary
                 DataMap.Add(new Vector2Int(new_building.x, new_building.y), new_building);
             }
         }

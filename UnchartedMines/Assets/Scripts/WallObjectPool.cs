@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class WallObjectPool : MonoBehaviour
 {
@@ -9,10 +10,12 @@ public class WallObjectPool : MonoBehaviour
     public Transform wallContainer;
 
     public int poolSize = 110;
-    public int FloorpoolSize = 110;
+    public int floorPoolSize = 110;
+    public int orbPoolSize = 25;
 
     private Queue<BaseWallDisplay> wallPool = new Queue<BaseWallDisplay>();
     private Queue<BaseWallDisplay> floorPool = new Queue<BaseWallDisplay>();
+    private Queue<BaseWallDisplay> orbPool = new Queue<BaseWallDisplay>();
     public bool isReady = false;
     void Awake()
     {
@@ -35,13 +38,20 @@ public class WallObjectPool : MonoBehaviour
             wallPool.Enqueue(wall);
         }
         
-        for (int i = 0; i < FloorpoolSize; i++)
+        for (int i = 0; i < floorPoolSize; i++)
         {
             BaseWallDisplay floor = Instantiate(GetPrefab(WallType.Floor), Vector3.zero, Quaternion.identity,wallContainer);
             floor.gameObject.SetActive(false);
             floorPool.Enqueue(floor);
         }
 
+        for (int i = 0; i < orbPoolSize; i++)
+        {
+            BaseWallDisplay orb = Instantiate(GetPrefab(WallType.Orb), Vector3.zero, Quaternion.identity,wallContainer);
+            orb.gameObject.SetActive(false);
+            floorPool.Enqueue(orb);
+        }
+        
         yield return null;
         isReady = true;
     }
@@ -61,9 +71,9 @@ public class WallObjectPool : MonoBehaviour
         {
             return GetFloorFromPool();
         }
-        else if (type == WallType.FogOfWall)
+        else if (type == WallType.Orb)
         {
-            return GetWallFromPool();
+            return GetOrbFromPool();
         }
 
         return GetWallFromPool();
@@ -90,6 +100,17 @@ public class WallObjectPool : MonoBehaviour
         BaseWallDisplay floor = floorPool.Dequeue();
         return floor;
     }
+    
+    public BaseWallDisplay GetOrbFromPool()
+    {
+        if (orbPool.Count == 0)
+        {
+            ExpandOrbPool();
+        }
+
+        BaseWallDisplay orb = orbPool.Dequeue();
+        return orb;
+    }
 
     public void ReturnWallToPool(BaseWallDisplay wall,WallType type)
     {
@@ -102,6 +123,10 @@ public class WallObjectPool : MonoBehaviour
         else if (type == WallType.Floor)
         {
             floorPool.Enqueue(wall);
+        }
+        else if (type == WallType.Orb)
+        {
+            orbPool.Enqueue(wall);
         }
     }
 
@@ -117,6 +142,13 @@ public class WallObjectPool : MonoBehaviour
         BaseWallDisplay floor = Instantiate(GetPrefab(WallType.Floor), Vector3.zero, Quaternion.identity,wallContainer);
         floor.gameObject.SetActive(false);
         floorPool.Enqueue(floor);
+    }
+    
+    void ExpandOrbPool()
+    {
+        BaseWallDisplay orb = Instantiate(GetPrefab(WallType.Orb), Vector3.zero, Quaternion.identity,wallContainer);
+        orb.gameObject.SetActive(false);
+        orbPool.Enqueue(orb);
     }
 
     BaseWallDisplay GetPrefab(WallType type)
