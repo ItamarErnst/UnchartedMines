@@ -8029,7 +8029,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeButton: {fileID: 1409588342}
   text_display: {fileID: 1215038155}
-  upgrade_cost: 0
+  upgrade_cost: 32
   multiplayer: 1.42
 --- !u!4 &1932788804
 Transform:

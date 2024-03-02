@@ -44,19 +44,22 @@ public class GridManager : MonoBehaviour
         if(!BlockDataProvider.CanDig(wallData.wallType) || wallData.fogged) return;
         
         Vector2Int cell = new Vector2Int(wallData.x, wallData.y);
+        WallDisplay dig_display = null;
 
-        if (!wallDisplayDict.TryGetValue(cell, out BaseWallDisplay wallDisplay))
+        if (wallDisplayDict.TryGetValue(cell, out BaseWallDisplay wallDisplay))
         {
-            return;
-        }
-
-        if (!wallDisplay.TryGetComponent(out WallDisplay dig_display))
-        {
-            return;
+            if (wallDisplay.TryGetComponent(out WallDisplay display))
+            {
+                dig_display = display;
+            }
         }
 
         wallData.currentHits += PlayerStats.GetDigDamage() * PlayerStats.GetPlayerSTR();
-        dig_display.Dig(wallData.currentHits);
+
+        if (dig_display)
+        {
+            dig_display.Dig(wallData.currentHits);
+        }
 
         if (wallData.currentHits >= wallData.hitsRequired)
         {
@@ -101,6 +104,7 @@ public class GridManager : MonoBehaviour
     void UpdateWallDisplay(Vector2Int cell, WallData wallData)
     {
         if(wallData == null) return;
+        if(!camera_controller.GetCellsOnScreen().Contains(cell)) return;
         
         WallType type = wallData.wallType;
 
@@ -176,7 +180,7 @@ public class GridManager : MonoBehaviour
 
     public void ReplaceWall(Vector2Int cell,WallType new_type,bool fogged)
     {
-        if(!wallDisplayDict.TryGetValue(cell,out BaseWallDisplay wallDisplay)) return;
+        wallDisplayDict.TryGetValue(cell, out BaseWallDisplay wallDisplay);
         
         ReturnDisplayFromCellToPool(cell, wallDisplay);
         
@@ -189,6 +193,7 @@ public class GridManager : MonoBehaviour
         };
                     
         MapData.UpdateMapData(cell,data);
+
         UpdateWallDisplay(cell, data);
     }
     
@@ -206,7 +211,11 @@ public class GridManager : MonoBehaviour
     private void ReturnDisplayFromCellToPool(Vector2Int cell,BaseWallDisplay wallDisplay)
     {
         wallDisplayDict.Remove(cell);
-        wallObjectPool.ReturnWallToPool(wallDisplay,MapData.GetMapDataToCell(cell).wallType);
+
+        if (wallDisplay != null)
+        {
+            wallObjectPool.ReturnWallToPool(wallDisplay,MapData.GetMapDataToCell(cell).wallType);
+        }
     }
     
     public Vector2Int GetGridCell(Vector3 position)
@@ -223,13 +232,5 @@ public class GridManager : MonoBehaviour
         float y = gridCell.y * cellSize + cellSize / 2f;
 
         return new Vector3(x, y, 0f);
-    }
-    
-    public Vector2 GetGridCellVector(Vector3 position)
-    {
-        int x = Mathf.FloorToInt(position.x / cellSize);
-        int y = Mathf.FloorToInt(position.y / cellSize);
-
-        return new Vector2Int(x, y);
     }
 }

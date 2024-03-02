@@ -23,7 +23,7 @@ public class GameController : MonoBehaviour
     void Start()
     {
         GameEvent.OnCellClick.AddListener(HandleCellClick);
-        GameEvent.OnDiggerDig.AddListener(HandleCellClick);
+        GameEvent.OnDiggerDig.AddListener(DigInCell);
         GameEvent.OnRightClickCell.AddListener(HandleRightClick);
         GameEvent.OnCameraMove.AddListener(OnCameraMove);
         GameEvent.OnDigComplete.AddListener(OnDigComplete);
@@ -63,6 +63,17 @@ public class GameController : MonoBehaviour
                 {
                     GridManager.UpdateWall(wallData);
                 }
+            }
+        }
+    }
+    
+    void DigInCell(Vector2Int cell)
+    {
+        if (MapData.GetMapData().TryGetValue(cell, out WallData wallData))
+        {
+            if (wallData != null)
+            {
+                GridManager.UpdateWall(wallData);
             }
         }
     }
