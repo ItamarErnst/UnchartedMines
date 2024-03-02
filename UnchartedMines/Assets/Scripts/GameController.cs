@@ -47,7 +47,4 @@ public class GameController : MonoBehaviour
     {
         GridManager.UpdateGridDisplay();
     }
-    
-    
-    
 }
