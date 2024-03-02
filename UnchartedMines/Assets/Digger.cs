@@ -10,7 +10,10 @@ public class Digger : MonoBehaviour
     private Vector2Int cell = Vector2Int.one;
     public Vector2Int target_cell = Vector2Int.zero;
     private bool inProgress = false;
-    private bool startWithX = false;
+
+    public GameObject display_selected;
+    private Coroutine digging_corutine = null;
+    
     private void Awake()
     {
         gridManager = GridManager.GetObject();
@@ -22,17 +25,37 @@ public class Digger : MonoBehaviour
         transform.position = gridManager.GetWorldPosition(cell);
     }
 
+    public void OnSelect()
+    {
+        display_selected.SetActive(true);
+    }
+    
+    public void OnDeselect()
+    {
+        display_selected.SetActive(false);
+    }
+
     public void SetTargetAndGo(Vector2Int target)
     {
         if(inProgress) return;
+        
         target_cell = target;
-        StartCoroutine(GotoTargetCell());
+        OnDeselect();
+        digging_corutine = StartCoroutine(GotoTargetCell());
+    }
+
+    public void StopDigging()
+    {
+        if (digging_corutine != null)
+        {
+            inProgress = false;
+            StopCoroutine(digging_corutine);
+        }
     }
 
     private IEnumerator GotoTargetCell()
     {
         inProgress = true;
-        startWithX = Random.Range(0, 2) == 0;
         
         while (cell != target_cell)
         {
@@ -73,30 +96,23 @@ public class Digger : MonoBehaviour
         int xDiff = targetCell.x - currentCell.x;
         int yDiff = targetCell.y - currentCell.y;
 
-        if (startWithX)
+        int xClamp = Mathf.Clamp(xDiff, -1, 1);
+        int yClamp = Mathf.Clamp(yDiff, -1, 1);
+
+        if (xDiff != 0 || yDiff == 0)
         {
-            if (xDiff != 0)
-            {
-                return new Vector2Int(Mathf.Clamp(xDiff, -1, 1), 0);
-            }
-            else
-            {
-                return new Vector2Int(0, Mathf.Clamp(yDiff, -1, 1));
-            }
+            return new Vector2Int(xClamp, 0);
+        }
+        else if (yDiff != 0 || xDiff == 0)
+        {
+            return new Vector2Int(0, yClamp);
         }
         else
         {
-            if (yDiff != 0)
-            {
-                return new Vector2Int(0, Mathf.Clamp(yDiff, -1, 1));
-            }
-            else
-            {
-                return new Vector2Int(Mathf.Clamp(xDiff, -1, 1), 0);
-            }
+            return new Vector2Int(xClamp, 0);
         }
     }
-
+    
     private void MoveToCell(Vector2Int direction)
     {
         Vector2Int nextCell = new Vector2Int(cell.x + direction.x, cell.y + direction.y);
@@ -108,5 +124,10 @@ public class Digger : MonoBehaviour
     public Vector2Int GetCell()
     {
         return cell;
+    }
+
+    public bool IsInProgress()
+    {
+        return inProgress;
     }
 }

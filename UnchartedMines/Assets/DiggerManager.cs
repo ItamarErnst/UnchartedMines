@@ -12,7 +12,7 @@ public class DiggerManager : MonoBehaviour
     
     private Dictionary<Vector2Int, Digger> cell_to_digger = new();
     private Dictionary<Digger,Vector2Int > digger_to_cell = new();
-
+    
     public static DiggerManager GetObject()
     {
         return GameObject.Find("DiggerManager").GetComponent<DiggerManager>();

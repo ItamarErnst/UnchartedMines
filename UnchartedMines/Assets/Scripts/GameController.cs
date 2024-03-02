@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
     private ResourceController resourceController;
 
     private Digger selected_digger = null;
+    public DiggerPathRenderer diggerPathRenderer;
 
     private void Awake()
     {
@@ -45,7 +46,9 @@ public class GameController : MonoBehaviour
     {
         if (selected_digger != null)
         {
+            diggerPathRenderer.gameObject.SetActive(false);
             selected_digger.SetTargetAndGo(clickedCell);
+            selected_digger = null;
         }
         
         if (MapData.GetMapData().TryGetValue(clickedCell, out WallData wallData))
@@ -54,7 +57,7 @@ public class GameController : MonoBehaviour
             {
                 if (wallData.wallType == WallType.Floor || wallData.wallType == WallType.Torch)
                 {
-                    selected_digger = diggerManager.GetDiggerAtCell(clickedCell);
+                    SelectDiggerOnCell(clickedCell);
                 }
                 else
                 {
@@ -68,6 +71,8 @@ public class GameController : MonoBehaviour
     {
         if (selected_digger != null)
         {
+            diggerPathRenderer.gameObject.SetActive(false);
+            selected_digger.OnDeselect();
             selected_digger = null;
         }
         
@@ -85,5 +90,24 @@ public class GameController : MonoBehaviour
     void OnCameraMove()
     {
         GridManager.UpdateGridDisplay();
+    }
+
+    void SelectDiggerOnCell(Vector2Int cell)
+    {
+        selected_digger = diggerManager.GetDiggerAtCell(cell);
+        if (selected_digger)
+        {
+            if (selected_digger.IsInProgress())
+            {
+                selected_digger.StopDigging();
+                selected_digger = null;
+            }
+            else
+            {
+                selected_digger.OnSelect();
+                diggerPathRenderer.startPoint = selected_digger.transform;
+                diggerPathRenderer.gameObject.SetActive(true);
+            }
+        }
     }
 }

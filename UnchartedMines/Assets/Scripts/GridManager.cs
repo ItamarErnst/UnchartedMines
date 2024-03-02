@@ -224,4 +224,12 @@ public class GridManager : MonoBehaviour
 
         return new Vector3(x, y, 0f);
     }
+    
+    public Vector2 GetGridCellVector(Vector3 position)
+    {
+        int x = Mathf.FloorToInt(position.x / cellSize);
+        int y = Mathf.FloorToInt(position.y / cellSize);
+
+        return new Vector2Int(x, y);
+    }
 }

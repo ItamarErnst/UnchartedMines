@@ -372,6 +372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target_cell: {x: 0, y: 0}
+  display_selected: {fileID: 4392927622505851063}
 --- !u!95 &1467522426697878725
 Animator:
   serializedVersion: 5
@@ -419,7 +420,7 @@ MonoBehaviour:
   - {x: 0.4013548, y: -0.11026145, z: 0}
   m_ShapePathHash: 715590733
   m_Mesh: {fileID: 0}
-  m_InstanceId: 43264
+  m_InstanceId: 32664
   m_LocalBounds:
     m_Center: {x: 0.017027408, y: 0.0925725, z: 0}
     m_Extent: {x: 0.38459203, y: 0.20283395, z: 0}
@@ -813,7 +814,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
