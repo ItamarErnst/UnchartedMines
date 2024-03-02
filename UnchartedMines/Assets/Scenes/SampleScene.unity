@@ -8887,6 +8887,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeButton: {fileID: 1409588342}
+  text_display: {fileID: 1215038155}
   upgrade_cost: 50
 --- !u!4 &1932788804
 Transform:

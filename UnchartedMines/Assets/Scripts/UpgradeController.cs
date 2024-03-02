@@ -12,6 +12,7 @@ public class UpgradeController : MonoBehaviour
 
     public int upgrade_cost = 50;
     private int upgrade_level = 1;
+    private float multiplayer = 1.3f;
 
     private void Awake()
     {
@@ -38,6 +39,6 @@ public class UpgradeController : MonoBehaviour
 
     private int GetPriceToLevel()
     {
-        return upgrade_cost * upgrade_level;
+        return Mathf.RoundToInt((upgrade_cost * upgrade_level) * multiplayer);
     }
 }
