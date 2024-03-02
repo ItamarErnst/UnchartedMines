@@ -6873,7 +6873,7 @@ MonoBehaviour:
   - type: 0
     prefab: {fileID: 6993113437689658857, guid: dcb8386e9bdb5854483e86576eb0fe66, type: 3}
   - type: 1
-    prefab: {fileID: 3659991520082038547, guid: c70ad9798e68f5247b956a2fb813a37c, type: 3}
+    prefab: {fileID: 833941536999096028, guid: c70ad9798e68f5247b956a2fb813a37c, type: 3}
   - type: 2
     prefab: {fileID: 6993113437689658857, guid: 924840d0f50bf4346b38a566e979460c, type: 3}
 --- !u!4 &1750142015
