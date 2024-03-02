@@ -49,7 +49,7 @@ public class WallObjectPool : MonoBehaviour
         {
             BaseWallDisplay orb = Instantiate(GetPrefab(WallType.Copper), Vector3.zero, Quaternion.identity,wallContainer);
             orb.gameObject.SetActive(false);
-            floorPool.Enqueue(orb);
+            orbPool.Enqueue(orb);
         }
         
         yield return null;
