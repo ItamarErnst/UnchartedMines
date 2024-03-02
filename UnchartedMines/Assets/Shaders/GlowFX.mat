@@ -32,7 +32,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
-  m_LockedProperties: 
+  m_LockedProperties: _Speed
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -51,9 +51,9 @@ Material:
     m_Ints: []
     m_Floats:
     - _Intesity: 2
-    - _MaxGlow: 3
-    - _MinGlow: 2
-    - _Speed: 3
+    - _MaxGlow: 6
+    - _MinGlow: 5
+    - _Speed: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
