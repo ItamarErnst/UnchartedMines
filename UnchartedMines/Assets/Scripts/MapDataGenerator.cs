@@ -53,6 +53,11 @@ public static class WallTypeGenerator
             }
             else
             {
+                if (x == 0 && y == 0)
+                {
+                    return WallType.Torch;
+                }
+                
                 return WallType.Floor; // Floor for the inner area
             }
         }
