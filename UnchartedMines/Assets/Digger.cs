@@ -72,8 +72,7 @@ public class Digger : MonoBehaviour
         {
             Vector2Int direction = CalculateDirection(transform.position, gridManager.GetWorldPosition(target_cell));
 
-            float flip = Mathf.Clamp(direction.x, -1, 1) * -1;
-            visuals_holder.transform.localScale = new Vector3(flip, 1, 0);
+            
             
             WallData wallData = MapData.GetMapDataToCell(cell + direction);
             if (wallData != null)
@@ -148,8 +147,20 @@ public class Digger : MonoBehaviour
     {
         Vector2Int nextCell = new Vector2Int(cell.x + direction.x, cell.y + direction.y);
         
+        FlipToDirection(direction);
         transform.position = gridManager.GetWorldPosition(nextCell);
+        
         cell = nextCell;
+    }
+
+    private void FlipToDirection(Vector2Int direction)
+    {
+        float flip = visuals_holder.transform.localScale.x;
+        if (direction.x != 0)
+        {
+            flip = Mathf.Clamp(direction.x, -1, 1) * -1;
+        }
+        visuals_holder.transform.localScale = new Vector3(flip, 1, 0);
     }
 
     public Vector2Int GetCell()
