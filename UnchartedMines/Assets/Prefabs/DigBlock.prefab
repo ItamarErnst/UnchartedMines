@@ -551,6 +551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a576a637fd74461a74acaf732193b97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animation: {fileID: 4961883309097423122}
   holder: {fileID: 1934029797685012311}
   default_material: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   pixel_color_list:
@@ -578,7 +579,6 @@ MonoBehaviour:
   - {fileID: 4799429157225857059}
   shakeDuration: 0.1
   shakeIntensity: 0.07
-  animation: {fileID: 4961883309097423122}
 --- !u!114 &7610015186543220007
 MonoBehaviour:
   m_ObjectHideFlags: 0
