@@ -5316,7 +5316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   digger_container: {fileID: 742817743}
-  digger_prefab: {fileID: 6673136486217861952, guid: be9b1ab2d22fc3b4aa89e5e629edfc99, type: 3}
+  digger_prefab: {fileID: 6673136486217861952, guid: db8252c210a4b1047a694bda6768f02a, type: 3}
 --- !u!4 &434879687
 Transform:
   m_ObjectHideFlags: 0
