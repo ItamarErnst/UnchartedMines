@@ -15,6 +15,10 @@ public class Digger : MonoBehaviour
     private Coroutine digging_corutine = null;
     
     Vector2Int path_to_target = Vector2Int.zero;
+
+    public Animator animator;
+    public ParticleSystem start_digging_pr;
+    public GameObject visuals_holder;
     
     private void Awake()
     {
@@ -41,6 +45,7 @@ public class Digger : MonoBehaviour
     {
         if(inProgress) return;
         
+        start_digging_pr.Play();
         target_cell = target;
         OnDeselect();
         digging_corutine = StartCoroutine(GotoTargetCell());
@@ -51,6 +56,8 @@ public class Digger : MonoBehaviour
         if (digging_corutine != null)
         {
             inProgress = false;
+            animator.SetBool("Digging", false);
+            animator.SetBool("Walking", false);
             StopCoroutine(digging_corutine);
         }
     }
@@ -65,16 +72,25 @@ public class Digger : MonoBehaviour
         {
             Vector2Int direction = CalculateDirection(transform.position, gridManager.GetWorldPosition(target_cell));
 
+            float flip = Mathf.Clamp(direction.x, -1, 1) * -1;
+            visuals_holder.transform.localScale = new Vector3(flip, 1, 0);
+            
             WallData wallData = MapData.GetMapDataToCell(cell + direction);
             if (wallData != null)
             {
                 if (wallData.wallType == WallType.Floor || wallData.wallType == WallType.Torch)
                 {
+                    animator.SetBool("Walking", true);
+                    animator.SetBool("Digging", false);
+                    
                     MoveToCell(direction);
                     GameEvent.OnDiggerMove.Invoke(this);
                 }
                 else if (wallData.wallType == WallType.Dig || wallData.wallType == WallType.Copper)
                 {
+                    animator.SetBool("Digging", true);
+                    animator.SetBool("Walking", false);
+                    
                     GameEvent.OnDiggerDig.Invoke(cell + direction);
                 }
             }
@@ -82,6 +98,8 @@ public class Digger : MonoBehaviour
             {
                 inProgress = false;
                 transform.position = gridManager.GetWorldPosition(target_cell);
+                animator.SetBool("Digging", false);
+                animator.SetBool("Walking", false);
                 break;
             }
             

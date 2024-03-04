@@ -99,6 +99,10 @@ public class GameController : MonoBehaviour
             {
                 GridManager.ReplaceWall(clickedCell,WallType.Torch,false);
             }
+            else if (wallData.wallType == WallType.Torch)
+            {
+                GridManager.ReplaceWall(clickedCell,WallType.Floor,false);
+            }
         }
     }
 
