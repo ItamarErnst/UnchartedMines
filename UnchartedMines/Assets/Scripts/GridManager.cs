@@ -63,7 +63,7 @@ public class GridManager : MonoBehaviour
 
         if (wallData.currentHits >= wallData.hitsRequired)
         {
-            GameEvent.OnDigComplete.Invoke(wallData.wallType);
+            GameEvent.OnDigComplete.Invoke(wallData.wallType,cell);
             ReplaceWall(cell, WallType.Floor,false);
             CreateWalls(cell);
         }

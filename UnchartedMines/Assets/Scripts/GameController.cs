@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
     private GridManager GridManager;
     private DiggerManager diggerManager;
     private ResourceController resourceController;
+    private ParticleManager particleManager;
 
     private Digger selected_digger = null;
     public DiggerPathRenderer diggerPathRenderer;
@@ -18,6 +19,7 @@ public class GameController : MonoBehaviour
         resourceController = ResourceController.GetObject();
         GridManager = GridManager.GetObject();
         diggerManager = DiggerManager.GetObject();
+        particleManager= ParticleManager.GetObject();
     }
 
     void Start()
@@ -29,7 +31,7 @@ public class GameController : MonoBehaviour
         GameEvent.OnDigComplete.AddListener(OnDigComplete);
     }
 
-    void OnDigComplete(WallType type)
+    void OnDigComplete(WallType type,Vector2Int cell)
     {
         if (type == WallType.Dig)
         {
@@ -40,6 +42,8 @@ public class GameController : MonoBehaviour
         {
             resourceController.AddResource(3,ResourceType.Copper);
         }
+
+        particleManager.PlayExplosionParticle(cell);
     }
     
     void HandleCellClick(Vector2Int clickedCell)

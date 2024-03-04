@@ -7,13 +7,14 @@ using UnityEngine;
 public class ParticleManager : MonoBehaviour
 {
     public Transform particle_container;
+    public ParticleSystem explotion_pr_prefab;
     public ParticleSystem dig_pr_prefab;
     private ParticleSystem.Burst dig_burst;
     public static ParticleManager GetObject()
     {
         return GameObject.Find("ParticleManager").GetComponent<ParticleManager>();
     }
-    
+
     public void PlayDigParticle(Vector2 cell_world_position,int score)
     {
         ParticleSystem dig_pr = Instantiate(dig_pr_prefab,particle_container);
@@ -24,5 +25,15 @@ public class ParticleManager : MonoBehaviour
         dig_pr.Play();
         
         Destroy(dig_pr.gameObject,2f);
+    }
+    
+    public void PlayExplosionParticle(Vector2Int cell_world_position)
+    {
+        ParticleSystem explostion_pr = Instantiate(explotion_pr_prefab,particle_container);
+        explostion_pr.transform.position = new Vector3(cell_world_position.x,cell_world_position.y);
+
+        explostion_pr.Play();
+        
+        Destroy(explostion_pr.gameObject,2f);
     }
 }

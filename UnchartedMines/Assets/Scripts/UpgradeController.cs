@@ -38,6 +38,6 @@ public class UpgradeController : MonoBehaviour
 
     private int GetPriceToLevel()
     {
-        return Mathf.RoundToInt((upgrade_cost * upgrade_level) * multiplayer);
+        return Mathf.RoundToInt((upgrade_cost * upgrade_level) * (multiplayer * upgrade_level));
     }
 }
