@@ -99,18 +99,25 @@ public class Digger : MonoBehaviour
         int xClamp = Mathf.Clamp(xDiff, -1, 1);
         int yClamp = Mathf.Clamp(yDiff, -1, 1);
 
-        if (xDiff != 0 || yDiff == 0)
+        xDiff = Mathf.Abs(xDiff);
+        yDiff = Mathf.Abs(yDiff);
+        
+        if (xDiff == yDiff)
         {
             return new Vector2Int(xClamp, 0);
         }
-        else if (yDiff != 0 || xDiff == 0)
+        
+        if (xDiff != 0 && xDiff > yDiff)
+        {
+            return new Vector2Int(xClamp, 0);
+        }
+        
+        if (yDiff != 0 && yDiff > xDiff)
         {
             return new Vector2Int(0, yClamp);
         }
-        else
-        {
-            return new Vector2Int(xClamp, 0);
-        }
+        
+        return new Vector2Int(xClamp, 0);
     }
     
     private void MoveToCell(Vector2Int direction)

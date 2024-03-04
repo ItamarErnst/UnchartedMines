@@ -6,8 +6,9 @@ public class DiggerPathRenderer : MonoBehaviour
     private GridManager gridManager;
     public LineRenderer lineRenderer;
     public Transform startPoint;
-    public float minDifference = 0.1f;
 
+    public GameObject end_target;
+    
     private void Awake()
     {
         gridManager = GridManager.GetObject();
@@ -33,6 +34,8 @@ public class DiggerPathRenderer : MonoBehaviour
 
     void UpdateLineRenderer(Vector3 targetPosition)
     {
+        end_target.transform.position = targetPosition;
+
         lineRenderer.positionCount = 2;
         lineRenderer.SetPosition(0, startPoint.position);
 
