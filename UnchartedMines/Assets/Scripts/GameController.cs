@@ -43,7 +43,7 @@ public class GameController : MonoBehaviour
             resourceController.AddResource(3,ResourceType.Copper);
         }
 
-        particleManager.PlayExplosionParticle(cell);
+        particleManager.PlayExplosionParticle(GridManager.GetWorldPosition(cell));
     }
     
     void HandleCellClick(Vector2Int clickedCell)

@@ -27,10 +27,10 @@ public class ParticleManager : MonoBehaviour
         Destroy(dig_pr.gameObject,2f);
     }
     
-    public void PlayExplosionParticle(Vector2Int cell_world_position)
+    public void PlayExplosionParticle(Vector2 cell_world_position)
     {
         ParticleSystem explostion_pr = Instantiate(explotion_pr_prefab,particle_container);
-        explostion_pr.transform.position = new Vector3(cell_world_position.x,cell_world_position.y);
+        explostion_pr.transform.position = cell_world_position;
 
         explostion_pr.Play();
         
