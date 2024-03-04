@@ -57,5 +57,5 @@ Material:
     - _LineSize: 0.2
     - _LineSpeed: 2
     m_Colors:
-    - _Color: {r: 0.81960785, g: 0.77254903, b: 0.5686275, a: 0.78431374}
+    - _Color: {r: 0.81960785, g: 0.77254903, b: 0.5686274, a: 1}
   m_BuildTextureStacks: []
