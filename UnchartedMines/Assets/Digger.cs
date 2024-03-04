@@ -14,6 +14,8 @@ public class Digger : MonoBehaviour
     public GameObject display_selected;
     private Coroutine digging_corutine = null;
     
+    Vector2Int path_to_target = Vector2Int.zero;
+    
     private void Awake()
     {
         gridManager = GridManager.GetObject();
@@ -57,6 +59,8 @@ public class Digger : MonoBehaviour
     {
         inProgress = true;
         
+        path_to_target = CalculatePath(transform.position, gridManager.GetWorldPosition(target_cell));
+        
         while (cell != target_cell)
         {
             Vector2Int direction = CalculateDirection(transform.position, gridManager.GetWorldPosition(target_cell));
@@ -90,34 +94,36 @@ public class Digger : MonoBehaviour
 
     private Vector2Int CalculateDirection(Vector3 currentPos, Vector3 targetPos)
     {
+        Vector2Int current_path = CalculatePath(currentPos, targetPos);
+        
+        int xClamp = Mathf.Clamp(path_to_target.x, -1, 1);
+        int yClamp = Mathf.Clamp(path_to_target.y, -1, 1);
+
+        int xDiff = Mathf.Abs(path_to_target.x);
+        int yDiff = Mathf.Abs(path_to_target.y);
+
+        if (xDiff == yDiff && current_path.x != 0)
+        {
+            return new Vector2Int(xClamp, 0);
+        }
+        else if (xDiff > yDiff)
+        {
+            return (current_path.x != 0) ? 
+                new Vector2Int(xClamp, 0) : new Vector2Int(0, yClamp);
+        }
+        else
+        {
+            return (current_path.y != 0) ? 
+                new Vector2Int(0, yClamp) : new Vector2Int(xClamp, 0);
+        }
+    }
+
+    private Vector2Int CalculatePath(Vector3 currentPos, Vector3 targetPos)
+    {
         Vector2Int currentCell = gridManager.GetGridCell(currentPos);
         Vector2Int targetCell = gridManager.GetGridCell(targetPos);
-
-        int xDiff = targetCell.x - currentCell.x;
-        int yDiff = targetCell.y - currentCell.y;
-
-        int xClamp = Mathf.Clamp(xDiff, -1, 1);
-        int yClamp = Mathf.Clamp(yDiff, -1, 1);
-
-        xDiff = Mathf.Abs(xDiff);
-        yDiff = Mathf.Abs(yDiff);
         
-        if (xDiff == yDiff)
-        {
-            return new Vector2Int(xClamp, 0);
-        }
-        
-        if (xDiff != 0 && xDiff > yDiff)
-        {
-            return new Vector2Int(xClamp, 0);
-        }
-        
-        if (yDiff != 0 && yDiff > xDiff)
-        {
-            return new Vector2Int(0, yClamp);
-        }
-        
-        return new Vector2Int(xClamp, 0);
+        return new Vector2Int(targetCell.x - currentCell.x, targetCell.y - currentCell.y);
     }
     
     private void MoveToCell(Vector2Int direction)
