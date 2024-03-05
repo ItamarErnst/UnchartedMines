@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
+        audio_controller = AudioController.GetObject();
         resourceController = ResourceController.GetObject();
         GridManager = GridManager.GetObject();
         diggerManager = DiggerManager.GetObject();
@@ -46,7 +47,7 @@ public class GameController : MonoBehaviour
 
         particleManager.PlayExplosionParticle(GridManager.GetWorldPosition(cell));
         
-        audio_controller.OnDigBlock();
+        audio_controller.OnDigBlock(new Vector3(cell.x,cell.y));
     }
     
     void HandleCellClick(Vector2Int clickedCell)
@@ -84,13 +85,13 @@ public class GameController : MonoBehaviour
 
                 if (wallData.fogged)
                 {
-                    audio_controller.OnCantDigBlock();
+                    audio_controller.OnCantDigBlock(new Vector3(cell.x,cell.y));
                 }
                 else
                 {
                     if(wallData.wallType == WallType.Dig || wallData.wallType == WallType.Copper)
                     {
-                        audio_controller.OnDigBlock();
+                        audio_controller.OnDigBlock(new Vector3(cell.x,cell.y));
                     }
                 }
             }
@@ -113,12 +114,12 @@ public class GameController : MonoBehaviour
             if (wallData.wallType == WallType.Floor)
             {
                 GridManager.ReplaceWall(clickedCell,WallType.Torch,false);
-                audio_controller.OnPlaceTorch();
+                audio_controller.OnPlaceTorch(new Vector3(clickedCell.x,clickedCell.y));
             }
             else if (wallData.wallType == WallType.Torch)
             {
                 GridManager.ReplaceWall(clickedCell,WallType.Floor,false);
-                audio_controller.OnPlaceTorch();
+                audio_controller.OnPlaceTorch(new Vector3(clickedCell.x,clickedCell.y));
 
             }
         }
