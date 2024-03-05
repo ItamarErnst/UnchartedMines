@@ -6556,54 +6556,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1053526230}
-  - component: {fileID: 1053526229}
+  - component: {fileID: 1053526231}
   m_Layer: 0
-  m_Name: AudioController
+  m_Name: AudioManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1053526229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1053526228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7910d170138cffd4ba076e21541204fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  on_block_destroy:
-    Guid:
-      Data1: 802893212
-      Data2: 1300503005
-      Data3: 1417299380
-      Data4: -1609847324
-    Path: event:/OnBlockDestroy
-  place_torch:
-    Guid:
-      Data1: 267929838
-      Data2: 1281821403
-      Data3: -1871021398
-      Data4: 1866719460
-    Path: event:/OnPlaceTorch
-  on_remove_torch:
-    Guid:
-      Data1: 1292777080
-      Data2: 1088920939
-      Data3: 1080457869
-      Data4: -996088961
-    Path: event:/OnRmoveTorch
-  on_dig_block:
-    Guid:
-      Data1: 1213532305
-      Data2: 1185185690
-      Data3: -1761975401
-      Data4: 1040673641
-    Path: event:/OnDigBlock
 --- !u!4 &1053526230
 Transform:
   m_ObjectHideFlags: 0
@@ -6619,6 +6579,46 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1053526231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1053526228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15cf26701b484d808a8efafabd1cbe4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  on_block_destroy:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  place_torch:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  on_remove_torch:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  on_dig_block:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!1 &1076991106
 GameObject:
   m_ObjectHideFlags: 0
