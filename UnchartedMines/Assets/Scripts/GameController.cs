@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public class GameController : MonoBehaviour
 {
+    private AudioController audio_controller;
     private GridManager GridManager;
     private DiggerManager diggerManager;
     private ResourceController resourceController;
@@ -44,6 +45,8 @@ public class GameController : MonoBehaviour
         }
 
         particleManager.PlayExplosionParticle(GridManager.GetWorldPosition(cell));
+        
+        audio_controller.OnDigBlock();
     }
     
     void HandleCellClick(Vector2Int clickedCell)
@@ -78,6 +81,18 @@ public class GameController : MonoBehaviour
             if (wallData != null)
             {
                 GridManager.UpdateWall(wallData);
+
+                if (wallData.fogged)
+                {
+                    audio_controller.OnCantDigBlock();
+                }
+                else
+                {
+                    if(wallData.wallType == WallType.Dig,wallData.wallType == WallType.Copper)
+                    {
+                        audio_controller.OnDigBlock();
+                    }
+                }
             }
         }
     }
@@ -98,10 +113,13 @@ public class GameController : MonoBehaviour
             if (wallData.wallType == WallType.Floor)
             {
                 GridManager.ReplaceWall(clickedCell,WallType.Torch,false);
+                audio_controller.OnPlaceTorch();
             }
             else if (wallData.wallType == WallType.Torch)
             {
                 GridManager.ReplaceWall(clickedCell,WallType.Floor,false);
+                audio_controller.OnPlaceTorch();
+
             }
         }
     }
