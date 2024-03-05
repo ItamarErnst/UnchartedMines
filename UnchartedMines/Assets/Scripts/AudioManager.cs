@@ -35,6 +35,7 @@ public class AudioManager : MonoBehaviour
     
     public void OnCantDigBlock(Vector3 position)
     {
-        RuntimeManager.PlayOneShot(on_dig_block, position);       
+        //Do not delete functions in use, it will cause problems
+        //Keep it empty or tell me to delete for now :D
     }
 }
