@@ -119,7 +119,7 @@ public class GameController : MonoBehaviour
             else if (wallData.wallType == WallType.Torch)
             {
                 GridManager.ReplaceWall(clickedCell,WallType.Floor,false);
-                audio_controller.OnPlaceTorch(new Vector3(clickedCell.x,clickedCell.y));
+                audio_controller.OnRemoveTorch(new Vector3(clickedCell.x,clickedCell.y));
 
             }
         }

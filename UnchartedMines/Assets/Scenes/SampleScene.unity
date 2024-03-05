@@ -6576,13 +6576,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7910d170138cffd4ba076e21541204fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlaceTorch:
+  on_block_destroy:
+    Guid:
+      Data1: 802893212
+      Data2: 1300503005
+      Data3: 1417299380
+      Data4: -1609847324
+    Path: event:/OnBlockDestroy
+  place_torch:
     Guid:
       Data1: 267929838
       Data2: 1281821403
       Data3: -1871021398
       Data4: 1866719460
     Path: event:/OnPlaceTorch
+  on_remove_torch:
+    Guid:
+      Data1: 1292777080
+      Data2: 1088920939
+      Data3: 1080457869
+      Data4: -996088961
+    Path: event:/OnRmoveTorch
+  on_dig_block:
+    Guid:
+      Data1: 1213532305
+      Data2: 1185185690
+      Data3: -1761975401
+      Data4: 1040673641
+    Path: event:/OnDigBlock
 --- !u!4 &1053526230
 Transform:
   m_ObjectHideFlags: 0
