@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-3760681230908096425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/OnPlaceTorch
+  m_EditorClassIdentifier: 
+  Path: event:/OnPlaceTorch
+  Guid:
+    Data1: 267929838
+    Data2: 1281821403
+    Data3: -1871021398
+    Data4: 1866719460
+  Banks:
+  - {fileID: 910430987309680220}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15,14 +42,36 @@ MonoBehaviour:
   EditorBanks:
   - {fileID: 5486974297662293865}
   - {fileID: 9127436344040819100}
-  EditorEvents: []
+  - {fileID: 910430987309680220}
+  EditorEvents:
+  - {fileID: -3760681230908096425}
   EditorParameters: []
   MasterBanks:
   - {fileID: 9127436344040819100}
   StringsBanks:
   - {fileID: 5486974297662293865}
-  cacheTime: 638452334057932975
+  cacheTime: 638452397108915218
   cacheVersion: 131609
+--- !u!114 &910430987309680220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/sfx.bank
+  m_EditorClassIdentifier: 
+  Path: ../../../Fmod/Testproj/Build/Desktop/sfx.bank
+  Name: sfx
+  StudioPath: bank:/sfx
+  lastModified: 638452397108915218
+  FileSizes:
+  - Name: Desktop
+    Value: 40256
+  Exists: 1
 --- !u!114 &5486974297662293865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38,10 +87,10 @@ MonoBehaviour:
   Path: ../../../Fmod/Testproj/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638452334057932975
+  lastModified: 638452397107251660
   FileSizes:
   - Name: Desktop
-    Value: 712
+    Value: 808
   Exists: 1
 --- !u!114 &9127436344040819100
 MonoBehaviour:
@@ -58,7 +107,7 @@ MonoBehaviour:
   Path: ../../../Fmod/Testproj/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638452334057929096
+  lastModified: 638452397107247292
   FileSizes:
   - Name: Desktop
     Value: 1036
