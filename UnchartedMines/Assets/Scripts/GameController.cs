@@ -88,7 +88,7 @@ public class GameController : MonoBehaviour
                 }
                 else
                 {
-                    if(wallData.wallType == WallType.Dig,wallData.wallType == WallType.Copper)
+                    if(wallData.wallType == WallType.Dig || wallData.wallType == WallType.Copper)
                     {
                         audio_controller.OnDigBlock();
                     }
