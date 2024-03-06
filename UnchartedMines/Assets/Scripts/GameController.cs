@@ -47,7 +47,7 @@ public class GameController : MonoBehaviour
 
         particleManager.PlayExplosionParticle(GridManager.GetWorldPosition(cell));
         
-        audio_manager.OnDigBlock(new Vector3(cell.x,cell.y));
+        audio_manager.OnBlockDestroy(new Vector3(cell.x,cell.y));
     }
     
     void HandleCellClick(Vector2Int clickedCell)
@@ -69,6 +69,7 @@ public class GameController : MonoBehaviour
                 }
                 else
                 {
+                    audio_manager.OnDigBlock(new Vector3(clickedCell.x,clickedCell.y));
                     GridManager.UpdateWall(wallData);
                 }
             }
@@ -85,13 +86,13 @@ public class GameController : MonoBehaviour
 
                 if (wallData.fogged)
                 {
-                    audio_manager.OnCantDigBlock(new Vector3(cell.x,cell.y));
+                    //audio_manager.OnCantDigBlock(new Vector3(cell.x,cell.y));
                 }
                 else
                 {
                     if(wallData.wallType == WallType.Dig || wallData.wallType == WallType.Copper)
                     {
-                        audio_manager.OnDigBlock(new Vector3(cell.x,cell.y));
+                        //audio_manager.OnDigBlock(new Vector3(cell.x,cell.y));
                     }
                 }
             }
