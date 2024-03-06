@@ -1,6 +1,26 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-4928595246356447077
+--- !u!114 &-8795353707476275581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/sfx.bank
+  m_EditorClassIdentifier: 
+  Path: Testproj/Build/Desktop/sfx.bank
+  Name: sfx
+  StudioPath: bank:/sfx
+  lastModified: 638453298084978565
+  FileSizes:
+  - Name: Desktop
+    Value: 133312
+  Exists: 1
+--- !u!114 &-8545970556914539318
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,16 +30,83 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/OnRmoveTorch
+  m_Name: event:/sfx/OnDigBlock
   m_EditorClassIdentifier: 
-  Path: event:/OnRmoveTorch
+  Path: event:/sfx/OnDigBlock
+  Guid:
+    Data1: 1213532305
+    Data2: 1185185690
+    Data3: -1761975401
+    Data4: 1040673641
+  Banks:
+  - {fileID: -8795353707476275581}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-6088938939533640505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Testproj/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638453298083864008
+  FileSizes:
+  - Name: Desktop
+    Value: 1046
+  Exists: 1
+--- !u!114 &-4435653312870220348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Testproj/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638453298083855622
+  FileSizes:
+  - Name: Desktop
+    Value: 1036
+  Exists: 1
+--- !u!114 &-4254427326569145969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/OnRmoveTorch
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/OnRmoveTorch
   Guid:
     Data1: 1292777080
     Data2: 1088920939
     Data3: 1080457869
     Data4: -996088961
   Banks:
-  - {fileID: 713372227262683195}
+  - {fileID: -8795353707476275581}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -27,6 +114,26 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-3823075504225330006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Music.bank
+  m_EditorClassIdentifier: 
+  Path: Testproj/Build/Desktop/Music.bank
+  Name: Music
+  StudioPath: bank:/Music
+  lastModified: 638453298089276127
+  FileSizes:
+  - Name: Desktop
+    Value: 385184
+  Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40,82 +147,24 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 2408292581891461188}
-  - {fileID: 2268937472938348878}
-  - {fileID: 713372227262683195}
+  - {fileID: -6088938939533640505}
+  - {fileID: -4435653312870220348}
+  - {fileID: -3823075504225330006}
+  - {fileID: -8795353707476275581}
   EditorEvents:
-  - {fileID: -4928595246356447077}
-  - {fileID: 7938351975358364364}
-  - {fileID: 3205064105896207717}
-  - {fileID: 3184206668880494837}
+  - {fileID: 1814544375631577633}
+  - {fileID: -4254427326569145969}
+  - {fileID: -8545970556914539318}
+  - {fileID: 6774831298542472392}
+  - {fileID: 1170738785356805526}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 2268937472938348878}
+  - {fileID: -4435653312870220348}
   StringsBanks:
-  - {fileID: 2408292581891461188}
-  cacheTime: 638452510792199286
+  - {fileID: -6088938939533640505}
+  cacheTime: 638453298089276127
   cacheVersion: 131616
---- !u!114 &713372227262683195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/sfx.bank
-  m_EditorClassIdentifier: 
-  Path: ../../../Fmod/Testproj/Build/Desktop/sfx.bank
-  Name: sfx
-  StudioPath: bank:/sfx
-  lastModified: 638452510792199286
-  FileSizes:
-  - Name: Desktop
-    Value: 133312
-  Exists: 1
---- !u!114 &2268937472938348878
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: ../../../Fmod/Testproj/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 638452510791536426
-  FileSizes:
-  - Name: Desktop
-    Value: 1036
-  Exists: 1
---- !u!114 &2408292581891461188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
-  m_EditorClassIdentifier: 
-  Path: ../../../Fmod/Testproj/Build/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 638452510791541854
-  FileSizes:
-  - Name: Desktop
-    Value: 942
-  Exists: 1
---- !u!114 &3184206668880494837
+--- !u!114 &1170738785356805526
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,16 +174,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/OnPlaceTorch
+  m_Name: event:/sfx/OnPlaceTorch
   m_EditorClassIdentifier: 
-  Path: event:/OnPlaceTorch
+  Path: event:/sfx/OnPlaceTorch
   Guid:
     Data1: 267929838
     Data2: 1281821403
     Data3: -1871021398
     Data4: 1866719460
   Banks:
-  - {fileID: 713372227262683195}
+  - {fileID: -8795353707476275581}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -142,7 +191,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &3205064105896207717
+--- !u!114 &1814544375631577633
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -152,43 +201,43 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/OnBlockDestroy
+  m_Name: event:/Music/BGM
   m_EditorClassIdentifier: 
-  Path: event:/OnBlockDestroy
+  Path: event:/Music/BGM
+  Guid:
+    Data1: -531059952
+    Data2: 1093686254
+    Data3: -1082163824
+    Data4: 901652509
+  Banks:
+  - {fileID: -3823075504225330006}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 32000
+--- !u!114 &6774831298542472392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/OnBlockDestroy
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/OnBlockDestroy
   Guid:
     Data1: 802893212
     Data2: 1300503005
     Data3: 1417299380
     Data4: -1609847324
   Banks:
-  - {fileID: 713372227262683195}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &7938351975358364364
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/OnDigBlock
-  m_EditorClassIdentifier: 
-  Path: event:/OnDigBlock
-  Guid:
-    Data1: 1213532305
-    Data2: 1185185690
-    Data3: -1761975401
-    Data4: 1040673641
-  Banks:
-  - {fileID: 713372227262683195}
+  - {fileID: -8795353707476275581}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
