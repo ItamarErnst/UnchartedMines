@@ -19,6 +19,8 @@ public class Digger : MonoBehaviour
     public Animator animator;
     public ParticleSystem start_digging_pr;
     public GameObject visuals_holder;
+
+    public bool random_path = true;
     
     private void Awake()
     {
@@ -71,8 +73,6 @@ public class Digger : MonoBehaviour
         while (cell != target_cell)
         {
             Vector2Int direction = CalculateDirection(transform.position, gridManager.GetWorldPosition(target_cell));
-
-            
             
             WallData wallData = MapData.GetMapDataToCell(cell + direction);
             if (wallData != null)
@@ -107,6 +107,11 @@ public class Digger : MonoBehaviour
 
         transform.position = gridManager.GetWorldPosition(target_cell);
         inProgress = false;
+
+        if (random_path)
+        {
+            SetTargetAndGo(GetRandomCell(cell,5));
+        }
     }
 
     private Vector2Int CalculateDirection(Vector3 currentPos, Vector3 targetPos)
@@ -171,5 +176,10 @@ public class Digger : MonoBehaviour
     public bool IsInProgress()
     {
         return inProgress;
+    }
+
+    private Vector2Int GetRandomCell(Vector2Int cell,int range)
+    {
+        return new Vector2Int(cell.x + Random.Range(-range, range), cell.y + Random.Range(-range, range));
     }
 }

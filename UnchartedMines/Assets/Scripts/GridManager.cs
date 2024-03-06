@@ -33,7 +33,7 @@ public class GridManager : MonoBehaviour
     
     void InitializeMap()
     {
-        foreach (Vector2Int cellPosition in camera_controller.GetCellsOnScreen())
+        foreach (Vector2Int cellPosition in camera_controller.GetCellsOnScreen(cellSize))
         {
             UpdateWallDisplay(cellPosition, MapData.GetMapDataToCell(cellPosition));
         }
@@ -76,7 +76,7 @@ public class GridManager : MonoBehaviour
     
     public void UpdateGridDisplay()
     {
-        List<Vector2Int> currentCellsOnScreen = camera_controller.GetCellsOnScreen();
+        List<Vector2Int> currentCellsOnScreen = camera_controller.GetCellsOnScreen(cellSize);
         
         foreach (Vector2Int cell in currentCellsOnScreen)
         {
@@ -104,7 +104,7 @@ public class GridManager : MonoBehaviour
     void UpdateWallDisplay(Vector2Int cell, WallData wallData)
     {
         if(wallData == null) return;
-        if(!camera_controller.GetCellsOnScreen().Contains(cell)) return;
+        if(!camera_controller.GetCellsOnScreen(cellSize).Contains(cell)) return;
         
         WallType type = wallData.wallType;
 
