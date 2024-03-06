@@ -453,8 +453,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: ../../../Fmod/Testproj/Testproj.fspro
-  sourceBankPath: ../../../Fmod/Testproj/Build
+  sourceProjectPath: Testproj/Testproj.fspro
+  sourceBankPath: Testproj/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
@@ -475,8 +475,10 @@ MonoBehaviour:
   VirtualChannelSettings: []
   RealChannelSettings: []
   Plugins: []
-  MasterBanks: []
-  Banks: []
+  MasterBanks:
+  - Master
+  Banks:
+  - sfx
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0
@@ -492,17 +494,17 @@ MonoBehaviour:
   HideSetupWizard: 1
   LastEventReferenceScanVersion: 131609
   Platforms:
-  - {fileID: -7196820792613062253}
   - {fileID: -6985206784260766770}
-  - {fileID: -6859103951725519830}
-  - {fileID: -6616131214937685333}
-  - {fileID: -5333043713195755210}
-  - {fileID: -1838304608070508716}
   - {fileID: 54127125924024595}
-  - {fileID: 1324516919192881458}
-  - {fileID: 4873061347586293992}
-  - {fileID: 5931242385996731449}
+  - {fileID: -5333043713195755210}
+  - {fileID: -6616131214937685333}
   - {fileID: 7278885261583661662}
+  - {fileID: 5931242385996731449}
+  - {fileID: -6859103951725519830}
+  - {fileID: -1838304608070508716}
+  - {fileID: 4873061347586293992}
+  - {fileID: -7196820792613062253}
+  - {fileID: 1324516919192881458}
   MigratedPlatforms: 0500000012000000060000000b000000080000000a000000090000000c000000150000000200000001000000
 --- !u!114 &54127125924024595
 MonoBehaviour:
@@ -574,15 +576,15 @@ MonoBehaviour:
     HasValue: 0
   displaySortOrder: 0
   childIdentifiers:
-  - e7a046c753c3c3d4aacc91f6597f310d
-  - 2c5177b11d81d824dbb064f9ac8527da
-  - 2fea114e74ecf3c4f920e1d5cc1c4c40
   - 46fbfdf3fc43db0458918377fd40293e
-  - 0f8eb3f400726694eb47beb1a9f94ce8
-  - fd7c55dab0fce234b8c25f6ffca523c1
-  - c88d16e5272a4e241b0ef0ac2e53b73d
-  - b7716510a1f36934c87976f3a81dbf3d
+  - 2fea114e74ecf3c4f920e1d5cc1c4c40
   - 52eb9df5db46521439908db3a29a1bbb
+  - b7716510a1f36934c87976f3a81dbf3d
+  - 2c5177b11d81d824dbb064f9ac8527da
+  - 0f8eb3f400726694eb47beb1a9f94ce8
+  - c88d16e5272a4e241b0ef0ac2e53b73d
+  - e7a046c753c3c3d4aacc91f6597f310d
+  - fd7c55dab0fce234b8c25f6ffca523c1
   codecChannels:
     Value: []
     HasValue: 0
