@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class Digger : MonoBehaviour
@@ -21,6 +22,7 @@ public class Digger : MonoBehaviour
     public GameObject visuals_holder;
 
     public bool random_path = true;
+    public bool torch_on_end_walk = true;
     
     private void Awake()
     {
@@ -95,18 +97,19 @@ public class Digger : MonoBehaviour
             }
             else
             {
-                inProgress = false;
-                transform.position = gridManager.GetWorldPosition(target_cell);
-                animator.SetBool("Digging", false);
-                animator.SetBool("Walking", false);
+                OnReachedTarget();
                 break;
             }
             
             yield return new WaitForSeconds(0.5f);
         }
 
-        transform.position = gridManager.GetWorldPosition(target_cell);
-        inProgress = false;
+        if (torch_on_end_walk)
+        {
+            GameEvent.OnRightClickCell.Invoke(cell);
+        }
+
+        OnReachedTarget();
 
         if (random_path)
         {
@@ -181,5 +184,13 @@ public class Digger : MonoBehaviour
     private Vector2Int GetRandomCell(Vector2Int cell,int range)
     {
         return new Vector2Int(cell.x + Random.Range(-range, range), cell.y + Random.Range(-range, range));
+    }
+
+    private void OnReachedTarget()
+    {
+        inProgress = false;
+        transform.position = gridManager.GetWorldPosition(target_cell);
+        animator.SetBool("Digging", false);
+        animator.SetBool("Walking", false);
     }
 }
