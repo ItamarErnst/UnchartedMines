@@ -5826,7 +5826,7 @@ MonoBehaviour:
   m_Intensity: 0.1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 000000006b4c2cc6
+  m_ApplyToSortingLayers: 000000006b4c2cc61b020bbe
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -6439,6 +6439,7 @@ MonoBehaviour:
   particle_container: {fileID: 690200766}
   explotion_pr_prefab: {fileID: 1953217000587213613, guid: c53422241ccf80e43b4900dd355a0ec8, type: 3}
   dig_pr_prefab: {fileID: 1650145321525514432, guid: 2963d55b4b01a6e4894b8d227381217e, type: 3}
+  floating_item: {fileID: 6558191189546552133, guid: d804116ca29820a41af76cf250c92a9e, type: 3}
 --- !u!1 &942328053
 GameObject:
   m_ObjectHideFlags: 0

@@ -43,6 +43,7 @@ public class GameController : MonoBehaviour
         if (type == WallType.Copper)
         {
             resourceController.AddResource(3,ResourceType.Copper);
+            particleManager.InstateItem(GridManager.GetWorldPosition(cell));
         }
 
         particleManager.PlayExplosionParticle(GridManager.GetWorldPosition(cell));
