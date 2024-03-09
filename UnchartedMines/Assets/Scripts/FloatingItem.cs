@@ -29,18 +29,20 @@ public class FloatingItem : MonoBehaviour
         float time = 0f;
         Vector3 startScale = Vector3.zero;
         Vector3 endScale = Vector3.one;
-        Vector3 startPos = new Vector3(holder.localPosition.x, 0f, holder.localPosition.z);
-        Vector3 endPos = new Vector3(holder.localPosition.x, 0.5f, holder.localPosition.z);
+        Vector3 spawnPos = new Vector3(holder.localPosition.x, 0f, holder.localPosition.z);
+        Vector3 startPos = new Vector3(holder.localPosition.x, 0.5f, holder.localPosition.z);
+        Vector3 endPos = new Vector3(holder.localPosition.x, 1f, holder.localPosition.z);
 
-        while (time < enterDuration)
+        while (time < enterDuration * 1.5f)
         {
             holder.localScale = Vector3.Lerp(startScale, endScale, time / enterDuration);
-            holder.localPosition = Vector3.Lerp(startPos, endPos, time / enterDuration);
+            holder.localPosition = Vector3.Lerp(spawnPos, endPos, time / enterDuration);
             time += Time.deltaTime;
             yield return null;
         }
 
         time = 0;
+
         while (time < enterDuration)
         {
             holder.localPosition = Vector3.Lerp(endPos,startPos , time / enterDuration);
