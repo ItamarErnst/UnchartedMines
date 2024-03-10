@@ -46,7 +46,7 @@ public static class MapData
     public static void InitializeData()
     {
         int gridSize = 4;
-        List<Vector2Int> center_cells = WallTypeGenerator.GenerateCenterCells(gridSize);
+        List<Vector2Int> center_cells = WallTypeGenerator.GenerateCenterCells(gridSize, new Vector2Int(0,0));
 
         foreach (Vector2Int cellPosition in center_cells)
         {
@@ -66,6 +66,8 @@ public static class MapData
                 DataMap.Add(new Vector2Int(new_building.x, new_building.y), new_building);
             }
         }
+
+        CreateEventRoom(new Vector2Int(7,7));
     }
     
     
@@ -86,5 +88,23 @@ public static class MapData
         // Update Y values
         worldEdge[0] = new Vector2Int(worldEdge[0].x, Mathf.Min(worldEdge[0].y, cell.y));
         worldEdge[1] = new Vector2Int(worldEdge[1].x, Mathf.Max(worldEdge[1].y, cell.y));
+    }
+
+    public static void CreateEventRoom(Vector2Int cell)
+    {
+        List<Vector2Int> center_cells = WallTypeGenerator.GenerateCenterCells(2, cell);
+
+        foreach (Vector2Int cellPosition in center_cells)
+        {
+            WallData new_building = new WallData
+            {
+                wallType = WallType.Floor,
+                fogged = false,
+                x = cellPosition.x,
+                y = cellPosition.y
+            };
+
+            DataMap.Add(new Vector2Int(new_building.x, new_building.y), new_building);
+        }
     }
 }
