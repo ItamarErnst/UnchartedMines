@@ -16,8 +16,7 @@ public class RoomConfig
 {
     public string name;
     public RoomType room_type;
-    public GameObject prefab;
-    
+    public BaseWallDisplay prefab;
 }
 
 public class RoomDataProvider : MonoBehaviour
@@ -25,17 +24,31 @@ public class RoomDataProvider : MonoBehaviour
     public List<RoomConfig> room_config_list = new List<RoomConfig>();
     private Dictionary<RoomType, RoomConfig> room_type_to_config = new();
 
+    private bool isReady = false;
     public static RoomDataProvider GetObject()
     {
         return GameObject.Find("RoomDataProvider").GetComponent<RoomDataProvider>();
     }
     
-    private void Awake()
+    void Awake()
+    {
+        StartCoroutine(InitializePool());
+    }
+
+    IEnumerator InitializePool()
     {
         foreach (RoomConfig config in room_config_list)
         {
             room_type_to_config.TryAdd(config.room_type, config);
         }
+        
+        yield return null;
+        isReady = true;
+    }
+
+    public bool IsInitialized()
+    {
+        return isReady;
     }
 
     public RoomConfig GetRoomConfig(RoomType type)

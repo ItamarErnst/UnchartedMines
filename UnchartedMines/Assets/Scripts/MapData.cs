@@ -67,7 +67,7 @@ public static class MapData
             }
         }
 
-        CreateEventRoom(new Vector2Int(7,7));
+        CreateEventRoom(new Vector2Int(9,9),2);
     }
     
     
@@ -90,21 +90,36 @@ public static class MapData
         worldEdge[1] = new Vector2Int(worldEdge[1].x, Mathf.Max(worldEdge[1].y, cell.y));
     }
 
-    public static void CreateEventRoom(Vector2Int cell)
+    public static void CreateEventRoom(Vector2Int cell,int gridSize)
     {
-        List<Vector2Int> center_cells = WallTypeGenerator.GenerateCenterCells(2, cell);
+        List<Vector2Int> center_cells = WallTypeGenerator.GenerateCenterCells(gridSize, cell);
 
         foreach (Vector2Int cellPosition in center_cells)
         {
-            WallData new_building = new WallData
-            {
-                wallType = WallType.Floor,
-                fogged = false,
-                x = cellPosition.x,
-                y = cellPosition.y
-            };
+            Vector2Int normalized_cell = cellPosition - cell;
+            WallType? currentType = WallTypeGenerator.GetWallType(normalized_cell.x, normalized_cell.y, gridSize, 0);
 
-            DataMap.Add(new Vector2Int(new_building.x, new_building.y), new_building);
+            if (currentType.HasValue)
+            {
+                if (currentType.Value == WallType.Torch)
+                {
+                    currentType = WallType.Event;
+                }
+                else if (Mathf.Abs(normalized_cell.x) <= 1 && Mathf.Abs(normalized_cell.y) <= 1)
+                {
+                    currentType = WallType.Blocked;
+                }
+                
+                WallData new_building = new WallData
+                {
+                    wallType = currentType.Value,
+                    fogged = true,
+                    x = cellPosition.x,
+                    y = cellPosition.y
+                };
+
+                DataMap.Add(new Vector2Int(new_building.x, new_building.y), new_building);
+            }
         }
     }
 }

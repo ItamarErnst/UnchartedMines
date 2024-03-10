@@ -25,9 +25,9 @@ public static class WallTypeGenerator
         return center_cells;
     }
 
-    public static WallType? GetWallType(int x, int y, int gridSize)
+    public static WallType? GetWallType(int x, int y, int gridSize,int layers = 2)
     {
-        if (Mathf.Abs(x + 2) >= gridSize || Mathf.Abs(x - 2) >= gridSize || Mathf.Abs(y + 2) >= gridSize || Mathf.Abs(y - 2) >= gridSize)
+        if (Mathf.Abs(x + layers) >= gridSize || Mathf.Abs(x - layers) >= gridSize || Mathf.Abs(y + layers) >= gridSize || Mathf.Abs(y - layers) >= gridSize)
         {
             if (Mathf.Abs(x) == Mathf.Abs(y) && Mathf.Abs(x) == gridSize && Mathf.Abs(y) == gridSize)
             {

@@ -104,6 +104,8 @@ public class GridManager : MonoBehaviour
     void UpdateWallDisplay(Vector2Int cell, WallData wallData)
     {
         if(wallData == null) return;
+        if(wallData.wallType == WallType.Blocked) return;
+        
         if(!camera_controller.GetCellsOnScreen(cellSize).Contains(cell)) return;
         
         WallType type = wallData.wallType;
@@ -111,6 +113,7 @@ public class GridManager : MonoBehaviour
         if (!wallDisplayDict.TryGetValue(cell, out BaseWallDisplay display))
         {
             BaseWallDisplay newDisplay = wallObjectPool.GetDisplay(type);
+            
             newDisplay.ChangeColors(BlockDataProvider.GetConfig(type).prefab);
             newDisplay.SetDisplay(wallData);
             

@@ -6,7 +6,8 @@ using UnityEngine.Serialization;
 public class WallObjectPool : MonoBehaviour
 {
     public BlockDataProvider BlockDataProvider;
-
+    private RoomDataProvider roomDataProvider;
+    
     public Transform wallContainer;
 
     public int poolSize = 110;
@@ -19,12 +20,13 @@ public class WallObjectPool : MonoBehaviour
     public bool isReady = false;
     void Awake()
     {
+        roomDataProvider = RoomDataProvider.GetObject();
         StartCoroutine(InitializePool());
     }
 
     IEnumerator InitializePool()
     {
-        while (!BlockDataProvider.IsInitialized())
+        while (!(BlockDataProvider.IsInitialized() && roomDataProvider.IsInitialized()))
         {
             yield return null;
         }
@@ -61,6 +63,11 @@ public class WallObjectPool : MonoBehaviour
     
     public BaseWallDisplay GetDisplay(WallType type)
     {
+        if (type == WallType.Event)
+        {
+            return InstantiateEventRoom();
+        }
+        
         if (type == WallType.Dig)
         {
             return GetWallFromPool();
@@ -72,6 +79,10 @@ public class WallObjectPool : MonoBehaviour
         else if (type == WallType.Copper)
         {
             return GetOrbFromPool();
+        }
+        else if (type == WallType.Blocked)
+        {
+            return null;
         }
 
         return GetWallFromPool();
@@ -152,5 +163,12 @@ public class WallObjectPool : MonoBehaviour
     BaseWallDisplay GetPrefab(WallType type)
     {
         return BlockDataProvider.GetConfig(type).prefab;
+    }
+    
+    BaseWallDisplay InstantiateEventRoom()
+    {
+        BaseWallDisplay room = Instantiate(roomDataProvider.GetRoomConfig(RoomType.Fairy).prefab, Vector3.zero, Quaternion.identity,wallContainer);
+        room.gameObject.SetActive(false);
+        return room;
     }
 }
