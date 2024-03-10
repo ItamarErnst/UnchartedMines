@@ -5232,12 +5232,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   room_config_list:
+  - name: Empty
+    room_type: 0
+    prefab: {fileID: 0}
   - name: Feya
     room_type: 1
     prefab: {fileID: 5851913914335509568, guid: 549d0e68eac920d43bd0e854936e2273, type: 3}
-  - name: 
-    room_type: 0
-    prefab: {fileID: 0}
   - name: Ore
     room_type: 2
     prefab: {fileID: 3527251756695790045, guid: 549d0e68eac920d43bd0e854936e2273, type: 3}

@@ -9,6 +9,8 @@ public class FloatingItem : MonoBehaviour
     public float exitDuration = 1.0f;
     public float idleDuration = 2.0f;
 
+    public bool destory_on_end = true;
+    public bool keep_in_idle = false;
     private void OnEnable()
     {
         StartCoroutine(AnimationController());
@@ -18,10 +20,18 @@ public class FloatingItem : MonoBehaviour
     {
         yield return StartCoroutine(EnterAnimation());
 
-        yield return StartCoroutine(IdleAnimation());
+        do
+        {
+            yield return StartCoroutine(IdleAnimation());
+        } 
+        while (keep_in_idle);
 
         yield return StartCoroutine(ExitAnimation());
-        Destroy(gameObject);
+
+        if (destory_on_end)
+        {
+            Destroy(gameObject);
+        }
     }
 
     IEnumerator EnterAnimation()
