@@ -4,7 +4,8 @@ using UnityEngine;
 public static class MapData
 {
     private static Dictionary<Vector2Int, WallData> DataMap = new Dictionary<Vector2Int, WallData>();
-    
+    private static List<RoomData> EventRoomData = new();
+
     private static List<Vector2Int> worldEdge = new();
     
     public static Dictionary<Vector2Int, WallData> GetMapData()
@@ -30,11 +31,11 @@ public static class MapData
     public static void UpdateMapData(Vector2Int cellPosition, WallData wallData)
     {
         DataMap[cellPosition] = wallData;
+    }
 
-        if (wallData.wallType == WallType.Floor)
-        {
-            //UpdateWorldEdge(cellPosition);
-        }
+    public static void OnWallDestroy(Vector2Int cellPosition)
+    {
+        UnlockRoom(CheckForRoom(cellPosition));
     }
     
     
@@ -93,7 +94,8 @@ public static class MapData
     public static void CreateEventRoom(Vector2Int cell,int gridSize)
     {
         List<Vector2Int> center_cells = WallTypeGenerator.GenerateCenterCells(gridSize, cell);
-
+        List<Vector2Int> room_cells = new();
+        
         foreach (Vector2Int cellPosition in center_cells)
         {
             Vector2Int normalized_cell = cellPosition - cell;
@@ -114,12 +116,54 @@ public static class MapData
                 {
                     wallType = currentType.Value,
                     fogged = true,
+                    in_room = true,
                     x = cellPosition.x,
                     y = cellPosition.y
                 };
 
+                room_cells.Add(cellPosition);
                 DataMap.Add(new Vector2Int(new_building.x, new_building.y), new_building);
             }
         }
+        
+        RoomData new_room = new()
+        {
+            roomType = RoomType.Fairy,
+            fogged = true,
+            cells = room_cells
+        };
+        EventRoomData.Add(new_room);
+    }
+
+    private static RoomData CheckForRoom(Vector2Int cell)
+    {
+        foreach (RoomData data in EventRoomData)
+        {
+            if (data.fogged && data.cells.Contains(cell))
+            { 
+                return data;
+            }
+        }
+
+        return null;
+    }
+
+    private static void UnlockRoom(RoomData room_data)
+    {
+        if(room_data == null) return;
+        
+        room_data.fogged = false;
+
+        foreach (Vector2Int cell in room_data.cells)
+        {
+            WallData data = GetMapDataToCell(cell);
+            if (data != null)
+            {
+                data.fogged = false;
+                UpdateMapData(cell, data);
+            }
+        }
+        
+        GameEvent.OnOpenEventRoom.Invoke(room_data.cells);
     }
 }

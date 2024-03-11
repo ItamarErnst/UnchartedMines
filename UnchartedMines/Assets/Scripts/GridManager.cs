@@ -37,6 +37,8 @@ public class GridManager : MonoBehaviour
         {
             UpdateWallDisplay(cellPosition, MapData.GetMapDataToCell(cellPosition));
         }
+        
+        GameEvent.OnOpenEventRoom.AddListener(UpdateCellListWallData);
     }
 
     public void UpdateWall(WallData wallData)
@@ -66,6 +68,8 @@ public class GridManager : MonoBehaviour
             GameEvent.OnDigComplete.Invoke(wallData.wallType,cell);
             ReplaceWall(cell, WallType.Floor,false);
             CreateWalls(cell);
+            
+            MapData.OnWallDestroy(cell);
         }
         else
         {
@@ -131,10 +135,36 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    void CreateWalls(Vector2Int center)
+    void UpdateCellListWallData(List<Vector2Int> cells)
+    {
+        foreach (Vector2Int cell in cells)
+        {
+            if(!camera_controller.GetCellsOnScreen(cellSize).Contains(cell)) continue;
+
+            WallData wallData = MapData.GetMapDataToCell(cell);
+            if(wallData == null) continue;
+            if(wallData.wallType == WallType.Blocked) continue;
+            
+            if (wallDisplayDict.TryGetValue(cell, out BaseWallDisplay display))
+            {
+                display.ChangeColors(BlockDataProvider.GetConfig(wallData.wallType).prefab);
+                display.SetDisplay(wallData);
+                CreateWalls(cell,wallData.wallType);
+            }
+        }
+        
+    }
+
+    void CreateWalls(Vector2Int center,WallType wall_type = WallType.Floor)
     {
         int dig_range = 1;
         int fog_range = 3;
+
+        if (wall_type == WallType.Dig)
+        {
+            dig_range = 0;
+            fog_range = 2;
+        }
 
         for (int x = -fog_range; x <= fog_range; x++)
         {
