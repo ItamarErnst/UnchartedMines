@@ -27,6 +27,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 55480
+--- !u!114 &-7622172636610175563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sfx/Dig
+  m_EditorClassIdentifier: 
+  Path: event:/Sfx/Dig
+  Guid:
+    Data1: -869006193
+    Data2: 1120018331
+    Data3: 1839362946
+    Data4: 1536376990
+  Banks:
+  - {fileID: 3345233575246589823}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 200
 --- !u!114 &-6410800315591619214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42,7 +69,7 @@ MonoBehaviour:
   Path: ../../Fmod/UnchartedMines/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638464704770813355
+  lastModified: 638467055003106260
   FileSizes:
   - Name: Desktop
     Value: 1036
@@ -62,10 +89,10 @@ MonoBehaviour:
   Path: ../../Fmod/UnchartedMines/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638464704770821533
+  lastModified: 638467055003113251
   FileSizes:
   - Name: Desktop
-    Value: 956
+    Value: 996
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -86,15 +113,43 @@ MonoBehaviour:
   - {fileID: 5205502599353677592}
   EditorEvents:
   - {fileID: -8090437344418435455}
-  - {fileID: 8141231740191326156}
   - {fileID: 2919923453463709238}
+  - {fileID: -7622172636610175563}
+  - {fileID: 2642596467293368736}
   EditorParameters: []
   MasterBanks:
   - {fileID: -6410800315591619214}
   StringsBanks:
   - {fileID: -4150322071256883310}
-  cacheTime: 638464704771284257
+  cacheTime: 638467075391086907
   cacheVersion: 131609
+--- !u!114 &2642596467293368736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music3d
+  m_EditorClassIdentifier: 
+  Path: event:/Music3d
+  Guid:
+    Data1: -1828954433
+    Data2: 1119490497
+    Data3: 424959899
+    Data4: -189704550
+  Banks:
+  - {fileID: 5205502599353677592}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 55480
 --- !u!114 &2919923453463709238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,11 +172,11 @@ MonoBehaviour:
   - {fileID: 3345233575246589823}
   IsStream: 0
   Is3D: 0
-  IsOneShot: 0
+  IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 2000
+  Length: 200
 --- !u!114 &3345233575246589823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,10 +192,10 @@ MonoBehaviour:
   Path: ../../Fmod/UnchartedMines/Build/Desktop/Sfx.bank
   Name: Sfx
   StudioPath: bank:/Sfx
-  lastModified: 638464704771123189
+  lastModified: 638467075391086907
   FileSizes:
   - Name: Desktop
-    Value: 63840
+    Value: 64480
   Exists: 1
 --- !u!114 &5205502599353677592
 MonoBehaviour:
@@ -157,35 +212,8 @@ MonoBehaviour:
   Path: ../../Fmod/UnchartedMines/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638464704771284257
+  lastModified: 638467055003299131
   FileSizes:
   - Name: Desktop
-    Value: 1365792
+    Value: 1367104
   Exists: 1
---- !u!114 &8141231740191326156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Sfx/New Event
-  m_EditorClassIdentifier: 
-  Path: event:/Sfx/New Event
-  Guid:
-    Data1: -869006193
-    Data2: 1120018331
-    Data3: 1839362946
-    Data4: 1536376990
-  Banks:
-  - {fileID: 3345233575246589823}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 200

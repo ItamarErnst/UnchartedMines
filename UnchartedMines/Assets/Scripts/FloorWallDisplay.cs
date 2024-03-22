@@ -15,7 +15,7 @@ public class FloorWallDisplay : BaseWallDisplay
         torch.SetActive(data.wallType == WallType.Torch);
         if(data.wallType == WallType.Torch)
          {
-        Debug.LogError("Ping");  
+         FMODUnity.RuntimeManager.PlayOneShot("event:/Sfx/Ligh", GetComponent<Transform>().position);
          }
     }
 }
