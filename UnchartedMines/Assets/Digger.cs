@@ -93,6 +93,8 @@ public class Digger : MonoBehaviour
                     animator.SetBool("Walking", false);
                     
                     GameEvent.OnDiggerDig.Invoke(cell + direction);
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sfx/DigAnimation", GetComponent<Transform>().position); 
+
                 }
             }
             else
@@ -175,3 +177,6 @@ public class Digger : MonoBehaviour
         return inProgress;
     }
 }
+
+    
+
