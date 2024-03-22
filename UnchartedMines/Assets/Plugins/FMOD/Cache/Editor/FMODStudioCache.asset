@@ -49,7 +49,7 @@ MonoBehaviour:
   - {fileID: 3345233575246589823}
   IsStream: 0
   Is3D: 0
-  IsOneShot: 0
+  IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
@@ -122,7 +122,7 @@ MonoBehaviour:
   - {fileID: -6410800315591619214}
   StringsBanks:
   - {fileID: -4150322071256883310}
-  cacheTime: 638467130756503556
+  cacheTime: 638467179432824464
   cacheVersion: 131609
 --- !u!114 &2436356575757916062
 MonoBehaviour:
@@ -220,10 +220,10 @@ MonoBehaviour:
   Path: ../../Fmod/UnchartedMines/Build/Desktop/Sfx.bank
   Name: Sfx
   StudioPath: bank:/Sfx
-  lastModified: 638467130756503556
+  lastModified: 638467179432824464
   FileSizes:
   - Name: Desktop
-    Value: 67776
+    Value: 67648
   Exists: 1
 --- !u!114 &5205502599353677592
 MonoBehaviour:

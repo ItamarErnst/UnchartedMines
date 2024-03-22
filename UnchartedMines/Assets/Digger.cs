@@ -49,6 +49,8 @@ public class Digger : MonoBehaviour
         target_cell = target;
         OnDeselect();
         digging_corutine = StartCoroutine(GotoTargetCell());
+
+            
     }
 
     public void StopDigging()

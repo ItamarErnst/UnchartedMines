@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3008522351879374178}
   - component: {fileID: 1650145321525514432}
   - component: {fileID: 4721295573219289486}
+  - component: {fileID: -3127877568850865623}
   m_Layer: 0
   m_Name: DigParticle
   m_TagString: Untagged
@@ -4891,3 +4892,34 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &-3127877568850865623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2915058891039017095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -869006193
+      Data2: 1120018331
+      Data3: 1839362946
+      Data4: 1536376990
+    Path: event:/Sfx/Dig
+  Event: 
+  PlayEvent: 1
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
