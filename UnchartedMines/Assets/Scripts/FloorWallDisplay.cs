@@ -13,5 +13,9 @@ public class FloorWallDisplay : BaseWallDisplay
         base.SetDisplay(data);
         renderer.color = floor_color_list[Random.Range(0, floor_color_list.Count)];
         torch.SetActive(data.wallType == WallType.Torch);
+        if(data.wallType == WallType.Torch)
+         {
+        Debug.LogError("Ping");  
+         }
     }
 }
