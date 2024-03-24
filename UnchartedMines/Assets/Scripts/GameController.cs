@@ -97,10 +97,12 @@ public class GameController : MonoBehaviour
             
             if (wallData.wallType == WallType.Floor)
             {
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Sfx/Ligh", (Vector2)clickedCell); 
                 GridManager.ReplaceWall(clickedCell,WallType.Torch,false);
             }
             else if (wallData.wallType == WallType.Torch)
             {
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Sfx/LighOff", (Vector2)clickedCell);
                 GridManager.ReplaceWall(clickedCell,WallType.Floor,false);
             }
         }

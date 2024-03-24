@@ -73,8 +73,6 @@ public class Digger : MonoBehaviour
         while (cell != target_cell)
         {
             Vector2Int direction = CalculateDirection(transform.position, gridManager.GetWorldPosition(target_cell));
-
-            
             
             WallData wallData = MapData.GetMapDataToCell(cell + direction);
             if (wallData != null)
@@ -93,8 +91,7 @@ public class Digger : MonoBehaviour
                     animator.SetBool("Walking", false);
                     
                     GameEvent.OnDiggerDig.Invoke(cell + direction);
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sfx/DigAnimation", GetComponent<Transform>().position); 
-
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sfx/DigAnimation", transform.position); 
                 }
             }
             else

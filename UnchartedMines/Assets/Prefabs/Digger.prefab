@@ -984,6 +984,7 @@ GameObject:
   - component: {fileID: 6673136486217861952}
   - component: {fileID: 1467522426697878725}
   - component: {fileID: 6131063956929519223}
+  - component: {fileID: 8698334571806636604}
   m_Layer: 0
   m_Name: Digger
   m_TagString: Untagged
@@ -1073,10 +1074,41 @@ MonoBehaviour:
   - {x: 0.14474405, y: -0.34133053, z: 0}
   m_ShapePathHash: 553698248
   m_Mesh: {fileID: 0}
-  m_InstanceId: 66514
+  m_InstanceId: 32506
   m_LocalBounds:
     m_Center: {x: -0.00083079934, y: -0.20331249, z: 0}
     m_Extent: {x: 0.1563744, y: 0.15090367, z: 0}
+--- !u!114 &8698334571806636604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3527251756695790045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -620398811
+      Data2: 1242967236
+      Data3: -838593617
+      Data4: -1350983224
+    Path: event:/Music/Music
+  Event: 
+  PlayEvent: 1
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &3587653876186626394
 GameObject:
   m_ObjectHideFlags: 0
