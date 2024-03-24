@@ -19,7 +19,7 @@ MonoBehaviour:
     Data3: -1598748794
     Data4: -67598152
   Banks:
-  - {fileID: 3345233575246589823}
+  - {fileID: -3579094902261989597}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -46,7 +46,7 @@ MonoBehaviour:
     Data3: -838593617
     Data4: -1350983224
   Banks:
-  - {fileID: 5205502599353677592}
+  - {fileID: 6953070300089462926}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -73,7 +73,7 @@ MonoBehaviour:
     Data3: 1839362946
     Data4: 1536376990
   Banks:
-  - {fileID: 3345233575246589823}
+  - {fileID: -3579094902261989597}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -81,7 +81,25 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 200
---- !u!114 &-6410800315591619214
+--- !u!114 &-3579094902261989597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Sfx.bank
+  m_EditorClassIdentifier: 
+  Path: Desktop/Sfx.bank
+  Name: Sfx
+  StudioPath: bank:/Sfx
+  lastModified: 638468925914346067
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-420866358436475916
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,33 +111,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
   m_Name: bank:/Master.bank
   m_EditorClassIdentifier: 
-  Path: ../../Fmod/UnchartedMines/Build/Desktop/Master.bank
+  Path: Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638467185314132191
-  FileSizes:
-  - Name: Desktop
-    Value: 1036
-  Exists: 1
---- !u!114 &-4150322071256883310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
-  m_EditorClassIdentifier: 
-  Path: ../../Fmod/UnchartedMines/Build/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 638467185314138717
-  FileSizes:
-  - Name: Desktop
-    Value: 1092
+  lastModified: 638468925912596631
+  FileSizes: []
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -134,10 +130,10 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: -4150322071256883310}
-  - {fileID: -6410800315591619214}
-  - {fileID: 3345233575246589823}
-  - {fileID: 5205502599353677592}
+  - {fileID: 2740603231997643371}
+  - {fileID: -420866358436475916}
+  - {fileID: 6953070300089462926}
+  - {fileID: -3579094902261989597}
   EditorEvents:
   - {fileID: -8090437344418435455}
   - {fileID: 2919923453463709238}
@@ -147,10 +143,10 @@ MonoBehaviour:
   - {fileID: -8803934275111719953}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -6410800315591619214}
+  - {fileID: -420866358436475916}
   StringsBanks:
-  - {fileID: -4150322071256883310}
-  cacheTime: 638467185315193308
+  - {fileID: 2740603231997643371}
+  cacheTime: 638468925914346067
   cacheVersion: 131609
 --- !u!114 &2436356575757916062
 MonoBehaviour:
@@ -171,7 +167,7 @@ MonoBehaviour:
     Data3: -5109350
     Data4: 2116044013
   Banks:
-  - {fileID: 3345233575246589823}
+  - {fileID: -3579094902261989597}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -198,7 +194,7 @@ MonoBehaviour:
     Data3: 424959899
     Data4: -189704550
   Banks:
-  - {fileID: 5205502599353677592}
+  - {fileID: 6953070300089462926}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
@@ -206,6 +202,26 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 55480
+--- !u!114 &2740603231997643371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638468925912603908
+  FileSizes:
+  - Name: 
+    Value: 1092
+  Exists: 1
 --- !u!114 &2919923453463709238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,7 +241,7 @@ MonoBehaviour:
     Data3: 1965825162
     Data4: -924540734
   Banks:
-  - {fileID: 3345233575246589823}
+  - {fileID: -3579094902261989597}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -233,27 +249,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 200
---- !u!114 &3345233575246589823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Sfx.bank
-  m_EditorClassIdentifier: 
-  Path: ../../Fmod/UnchartedMines/Build/Desktop/Sfx.bank
-  Name: Sfx
-  StudioPath: bank:/Sfx
-  lastModified: 638467185315193308
-  FileSizes:
-  - Name: Desktop
-    Value: 74912
-  Exists: 1
---- !u!114 &5205502599353677592
+--- !u!114 &6953070300089462926
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -265,11 +261,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
   m_Name: bank:/Music.bank
   m_EditorClassIdentifier: 
-  Path: ../../Fmod/UnchartedMines/Build/Desktop/Music.bank
+  Path: Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638467055003299131
-  FileSizes:
-  - Name: Desktop
-    Value: 1367104
+  lastModified: 638468925913705819
+  FileSizes: []
   Exists: 1
