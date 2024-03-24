@@ -3,7 +3,7 @@ using UnityEngine;
 
 public static class WallTypeGenerator
 {
-    public static List<Vector2Int> GenerateCenterCells(int gridSize)
+    public static List<Vector2Int> GenerateCenterCells(int gridSize,Vector2Int center_cell)
     {
         List<Vector2Int> center_cells = new List<Vector2Int>();
 
@@ -13,11 +13,11 @@ public static class WallTypeGenerator
             for (int y = -gridSize; y <= gridSize; y++)
             {
                 // Check if the current position is on the most outer layer
-                WallType? currentType = GetWallType(x, y, gridSize);
+                WallType? currentType = GetWallType(x + center_cell.x, y + center_cell.y, gridSize);
 
                 if (currentType.HasValue)
                 {
-                    center_cells.Add(new Vector2Int(x, y));
+                    center_cells.Add(new Vector2Int(x + center_cell.x, y + center_cell.y));
                 }
             }
         }
@@ -25,9 +25,9 @@ public static class WallTypeGenerator
         return center_cells;
     }
 
-    public static WallType? GetWallType(int x, int y, int gridSize)
+    public static WallType? GetWallType(int x, int y, int gridSize,int layers = 2)
     {
-        if (Mathf.Abs(x + 2) >= gridSize || Mathf.Abs(x - 2) >= gridSize || Mathf.Abs(y + 2) >= gridSize || Mathf.Abs(y - 2) >= gridSize)
+        if (Mathf.Abs(x + layers) >= gridSize || Mathf.Abs(x - layers) >= gridSize || Mathf.Abs(y + layers) >= gridSize || Mathf.Abs(y - layers) >= gridSize)
         {
             if (Mathf.Abs(x) == Mathf.Abs(y) && Mathf.Abs(x) == gridSize && Mathf.Abs(y) == gridSize)
             {

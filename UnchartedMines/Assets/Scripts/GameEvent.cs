@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Events;
 
 public static class GameEvent
@@ -8,6 +9,8 @@ public static class GameEvent
     public static UnityEvent<WallType,Vector2Int> OnDigComplete = new();
     public static UnityEvent OnCameraMove = new(); // Event to signal camera movement
 
+    public static UnityEvent<List<Vector2Int>> OnOpenEventRoom = new();
+    
     public static UnityEvent<Vector2Int> OnDiggerDig = new();
     public static UnityEvent<Digger> OnDiggerMove = new();
 

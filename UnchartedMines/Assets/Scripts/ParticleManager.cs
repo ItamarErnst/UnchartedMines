@@ -10,6 +10,8 @@ public class ParticleManager : MonoBehaviour
     public ParticleSystem explotion_pr_prefab;
     public ParticleSystem dig_pr_prefab;
     private ParticleSystem.Burst dig_burst;
+
+    public FloatingItem floating_item;
     public static ParticleManager GetObject()
     {
         return GameObject.Find("ParticleManager").GetComponent<ParticleManager>();
@@ -35,5 +37,11 @@ public class ParticleManager : MonoBehaviour
         explostion_pr.Play();
         
         Destroy(explostion_pr.gameObject,2f);
+    }
+
+    public void InstateItem(Vector2 cell_world_position)
+    {
+        FloatingItem prefab = Instantiate(floating_item, particle_container);
+        prefab.transform.position = cell_world_position;
     }
 }

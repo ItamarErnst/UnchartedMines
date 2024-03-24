@@ -8,9 +8,16 @@ public class BaseWallDisplay : MonoBehaviour
     protected WallData wallData = null;
     public Animation animation;
 
+    public GameObject hidden, obj;
+
     public virtual void SetDisplay(WallData data)
     {
         wallData = data;
+
+        bool use_hidden = wallData.in_room && wallData.fogged;
+
+        hidden.SetActive(use_hidden);
+        obj.SetActive(!use_hidden);
     }
     
     public virtual void ChangeColors(BaseWallDisplay pooled_object)

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{83a84404-0e52-4f36-a8f1-4a483791fb1c}">
+		<property name="assetPath">
+			<value>Music/GamePlayMusic_ElephentTalk_1.ogg</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>32</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{b2454121-c771-4088-b792-35d243d1a03f}</destination>
+		</relationship>
+	</object>
+</objects>

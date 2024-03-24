@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public class GameController : MonoBehaviour
 {
+    private AudioManager audio_manager;
     private GridManager GridManager;
     private DiggerManager diggerManager;
     private ResourceController resourceController;
@@ -16,6 +17,7 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
+        audio_manager = AudioManager.GetObject();
         resourceController = ResourceController.GetObject();
         GridManager = GridManager.GetObject();
         diggerManager = DiggerManager.GetObject();
@@ -41,9 +43,12 @@ public class GameController : MonoBehaviour
         if (type == WallType.Copper)
         {
             resourceController.AddResource(3,ResourceType.Copper);
+            particleManager.InstateItem(GridManager.GetWorldPosition(cell));
         }
 
         particleManager.PlayExplosionParticle(GridManager.GetWorldPosition(cell));
+        
+        audio_manager.OnBlockDestroy(new Vector3(cell.x,cell.y));
     }
     
     void HandleCellClick(Vector2Int clickedCell)
@@ -65,6 +70,7 @@ public class GameController : MonoBehaviour
                 }
                 else
                 {
+                    audio_manager.OnDigBlock(new Vector3(clickedCell.x,clickedCell.y));
                     GridManager.UpdateWall(wallData);
                 }
             }
@@ -78,6 +84,18 @@ public class GameController : MonoBehaviour
             if (wallData != null)
             {
                 GridManager.UpdateWall(wallData);
+
+                if (wallData.fogged)
+                {
+                    //audio_manager.OnCantDigBlock(new Vector3(cell.x,cell.y));
+                }
+                else
+                {
+                    if(wallData.wallType == WallType.Dig || wallData.wallType == WallType.Copper)
+                    {
+                        //audio_manager.OnDigBlock(new Vector3(cell.x,cell.y));
+                    }
+                }
             }
         }
     }
@@ -98,10 +116,13 @@ public class GameController : MonoBehaviour
             if (wallData.wallType == WallType.Floor)
             {
                 GridManager.ReplaceWall(clickedCell,WallType.Torch,false);
+                audio_manager.OnPlaceTorch(new Vector3(clickedCell.x,clickedCell.y));
             }
             else if (wallData.wallType == WallType.Torch)
             {
                 GridManager.ReplaceWall(clickedCell,WallType.Floor,false);
+                audio_manager.OnRemoveTorch(new Vector3(clickedCell.x,clickedCell.y));
+
             }
         }
     }

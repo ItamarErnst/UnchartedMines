@@ -33,10 +33,12 @@ public class GridManager : MonoBehaviour
     
     void InitializeMap()
     {
-        foreach (Vector2Int cellPosition in camera_controller.GetCellsOnScreen())
+        foreach (Vector2Int cellPosition in camera_controller.GetCellsOnScreen(cellSize))
         {
             UpdateWallDisplay(cellPosition, MapData.GetMapDataToCell(cellPosition));
         }
+        
+        GameEvent.OnOpenEventRoom.AddListener(UpdateCellListWallData);
     }
 
     public void UpdateWall(WallData wallData)
@@ -66,6 +68,8 @@ public class GridManager : MonoBehaviour
             GameEvent.OnDigComplete.Invoke(wallData.wallType,cell);
             ReplaceWall(cell, WallType.Floor,false);
             CreateWalls(cell);
+            
+            MapData.OnWallDestroy(cell);
         }
         else
         {
@@ -76,7 +80,7 @@ public class GridManager : MonoBehaviour
     
     public void UpdateGridDisplay()
     {
-        List<Vector2Int> currentCellsOnScreen = camera_controller.GetCellsOnScreen();
+        List<Vector2Int> currentCellsOnScreen = camera_controller.GetCellsOnScreen(cellSize);
         
         foreach (Vector2Int cell in currentCellsOnScreen)
         {
@@ -104,13 +108,16 @@ public class GridManager : MonoBehaviour
     void UpdateWallDisplay(Vector2Int cell, WallData wallData)
     {
         if(wallData == null) return;
-        if(!camera_controller.GetCellsOnScreen().Contains(cell)) return;
+        if(wallData.wallType == WallType.Blocked) return;
+        
+        if(!camera_controller.GetCellsOnScreen(cellSize).Contains(cell)) return;
         
         WallType type = wallData.wallType;
 
         if (!wallDisplayDict.TryGetValue(cell, out BaseWallDisplay display))
         {
             BaseWallDisplay newDisplay = wallObjectPool.GetDisplay(type);
+            
             newDisplay.ChangeColors(BlockDataProvider.GetConfig(type).prefab);
             newDisplay.SetDisplay(wallData);
             
@@ -128,10 +135,36 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    void CreateWalls(Vector2Int center)
+    void UpdateCellListWallData(List<Vector2Int> cells)
+    {
+        foreach (Vector2Int cell in cells)
+        {
+            if(!camera_controller.GetCellsOnScreen(cellSize).Contains(cell)) continue;
+
+            WallData wallData = MapData.GetMapDataToCell(cell);
+            if(wallData == null) continue;
+            if(wallData.wallType == WallType.Blocked) continue;
+            
+            if (wallDisplayDict.TryGetValue(cell, out BaseWallDisplay display))
+            {
+                display.ChangeColors(BlockDataProvider.GetConfig(wallData.wallType).prefab);
+                display.SetDisplay(wallData);
+                CreateWalls(cell,wallData.wallType);
+            }
+        }
+        
+    }
+
+    void CreateWalls(Vector2Int center,WallType wall_type = WallType.Floor)
     {
         int dig_range = 1;
         int fog_range = 3;
+
+        if (wall_type == WallType.Dig)
+        {
+            dig_range = 0;
+            fog_range = 2;
+        }
 
         for (int x = -fog_range; x <= fog_range; x++)
         {

@@ -22,18 +22,12 @@ public class CameraController : MonoBehaviour
         
         if (moveDirection != Vector3.zero)
         {
-            //if (IsCameraWithinBounds(transform.position + moveDirection))
-            //{
-            //    transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
-            //    GameEvent.OnCameraMove.Invoke();
-            //}
-
             transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
             GameEvent.OnCameraMove.Invoke();
         }
     }
     
-    public List<Vector2Int> GetCellsOnScreen(float cellSize = 1)
+    public List<Vector2Int> GetCellsOnScreen(float cellSize)
     {
         Bounds cameraBounds = CalculateCameraBounds(mainCamera);
 

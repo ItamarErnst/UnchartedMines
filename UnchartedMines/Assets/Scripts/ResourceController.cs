@@ -1,6 +1,7 @@
 ﻿using System;
 using TMPro;
 using UnityEngine;
+using FMODUnity;
 
 public enum ResourceType
 {
