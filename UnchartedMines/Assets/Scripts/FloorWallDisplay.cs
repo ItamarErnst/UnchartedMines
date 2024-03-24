@@ -11,16 +11,5 @@
             base.SetDisplay(data);
             renderer.color = floor_color_list[Random.Range(0, floor_color_list.Count)];
             torch.SetActive(data.wallType == WallType.Torch);
-            if(data.wallType == WallType.Torch)
-            {
-            torch.SetActive(true);
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Sfx/Ligh", GetComponent<Transform>().position); 
-            }
-
-
-            else
-            {torch.SetActive(false);
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Sfx/LighOff", GetComponent<Transform>().position);
-            }
         }
     }
